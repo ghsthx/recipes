@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Борщ — Classic Red Borscht</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,600;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --beet: #8B1A1A;
+    --beet-deep: #5C0F0F;
+    --beet-light: #C0392B;
+    --cream: #F5ECD7;
+    --parchment: #EDE0C4;
+    --gold: #C9A84C;
+    --gold-light: #E2C97E;
+    --ink: #1C1208;
+    --dill: #3D6B35;
+    --dill-light: #5A8C50;
+    --sour-cream: #FAFAF0;
+    --warm-gray: #7A6E5F;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--cream);
+    color: var(--ink);
+    font-family: 'Lora', Georgia, serif;
+    overflow-x: hidden;
+  }
+
+  /* Subtle paper texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.5;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background-color: var(--beet-deep);
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 24px;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 40%, rgba(139,26,26,0.6) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 70%, rgba(92,15,15,0.8) 0%, transparent 50%);
+  }
+
+  /* Decorative folk art border pattern */
+  .hero-border-top, .hero-border-bottom {
+    position: absolute;
+    left: 0; right: 0;
+    height: 18px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--gold) 0px, var(--gold) 8px,
+      var(--beet) 8px, var(--beet) 16px,
+      var(--dill) 16px, var(--dill) 24px,
+      var(--beet) 24px, var(--beet) 32px
+    );
+    opacity: 0.7;
+  }
+  .hero-border-top { top: 0; }
+  .hero-border-bottom { bottom: 0; }
+
+  /* Inner folk-art diamond pattern */
+  .folk-strip {
+    position: absolute;
+    left: 0; right: 0;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    opacity: 0.5;
+  }
+  .folk-strip.top { top: 22px; }
+  .folk-strip.bottom { bottom: 22px; }
+  .folk-strip span {
+    color: var(--gold-light);
+    font-size: 18px;
+    letter-spacing: 8px;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 760px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    color: var(--gold-light);
+    font-size: 1rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s ease forwards;
+  }
+
+  .hero-cyrillic {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(4rem, 14vw, 9rem);
+    font-weight: 900;
+    color: var(--cream);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.5), 0 0 80px rgba(139,26,26,0.4);
+    opacity: 0;
+    animation: fadeUp 0.9s 0.4s ease forwards;
+  }
+
+  .hero-subtitle {
+    font-family: 'IM Fell English', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    color: var(--parchment);
+    margin-top: 18px;
+    font-style: italic;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.6s ease forwards;
+    line-height: 1.6;
+  }
+
+  .hero-divider {
+    margin: 28px auto;
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0;
+    animation: fadeIn 1s 0.8s ease forwards;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s 1s ease forwards;
+  }
+
+  .meta-item {
+    text-align: center;
+  }
+
+  .meta-label {
+    font-family: 'Lora', serif;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--gold-light);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .meta-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--cream);
+    font-weight: 700;
+  }
+
+  /* ── INTRO BAND ── */
+  .intro-band {
+    background-color: var(--ink);
+    padding: 48px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .intro-band::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: 50%;
+    transform: translateX(-50%);
+    width: 300px; height: 120px;
+    background: radial-gradient(ellipse, rgba(139,26,26,0.3), transparent 70%);
+  }
+
+  .intro-quote {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: var(--parchment);
+    max-width: 640px;
+    margin: 0 auto;
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+  }
+
+  .intro-quote::before {
+    content: '\201C';
+    font-size: 5rem;
+    color: var(--beet);
+    position: absolute;
+    top: -20px; left: -24px;
+    line-height: 1;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .intro-attribution {
+    font-family: 'Lora', serif;
+    font-size: 0.8rem;
+    color: var(--gold-light);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 20px;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .main-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 24px;
+  }
+
+  /* Section headers with folk ornaments */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .section-header::before,
+  .section-header::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--beet);
+    white-space: nowrap;
+    font-weight: 700;
+  }
+
+  /* ── INGREDIENTS ── */
+  .ingredients-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 64px;
+  }
+
+  @media (max-width: 700px) {
+    .ingredients-grid { grid-template-columns: 1fr; }
+  }
+
+  .ingredient-group {
+    background: var(--sour-cream);
+    border: 1px solid var(--gold-light);
+    border-top: 3px solid var(--beet);
+    padding: 24px 20px;
+    position: relative;
+  }
+
+  /* Corner ornaments */
+  .ingredient-group::before {
+    content: '❧';
+    position: absolute;
+    bottom: 8px; right: 12px;
+    font-size: 1rem;
+    color: var(--gold);
+    opacity: 0.5;
+  }
+
+  .group-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--beet);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--parchment);
+    font-weight: 700;
+  }
+
+  .ingredient-list {
+    list-style: none;
+  }
+
+  .ingredient-list li {
+    font-family: 'Lora', serif;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: var(--ink);
+    padding: 3px 0;
+    padding-left: 14px;
+    position: relative;
+  }
+
+  .ingredient-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+
+  .ingredient-list li.optional {
+    color: var(--warm-gray);
+    font-style: italic;
+  }
+
+  /* ── DIRECTIONS ── */
+  .directions-list {
+    counter-reset: step;
+    list-style: none;
+    margin-bottom: 64px;
+  }
+
+  .step {
+    counter-increment: step;
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 24px;
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  /* Vertical connector line */
+  .step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 31px;
+    top: 64px;
+    bottom: -12px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--gold-light), transparent);
+  }
+
+  .step-number {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--beet);
+    color: var(--cream);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 2px solid var(--beet-deep);
+    box-shadow: 0 4px 16px rgba(139,26,26,0.3);
+    position: relative;
+    z-index: 1;
+  }
+
+  .step-body {
+    padding-top: 12px;
+  }
+
+  .step-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--beet);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .step-name .step-icon {
+    font-size: 1rem;
+  }
+
+  .step-instructions {
+    list-style: none;
+  }
+
+  .step-instructions li {
+    font-family: 'Lora', serif;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--ink);
+    padding: 4px 0 4px 20px;
+    position: relative;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .step-instructions li:last-child { border-bottom: none; }
+
+  .step-instructions li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 0.8rem;
+    top: 7px;
+  }
+
+  /* ── TIMING GUIDE ── */
+  .timing-section {
+    background: var(--ink);
+    padding: 48px 40px;
+    margin-bottom: 64px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .timing-section::before {
+    content: '⏱';
+    position: absolute;
+    right: 32px;
+    top: 24px;
+    font-size: 5rem;
+    opacity: 0.06;
+  }
+
+  .timing-section .section-header::before,
+  .timing-section .section-header::after {
+    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent);
+  }
+
+  .timing-section .section-title {
+    color: var(--gold-light);
+  }
+
+  .timeline {
+    position: relative;
+    padding-left: 16px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px; bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--beet), var(--gold), var(--dill));
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: 20px;
+    padding: 12px 0 12px 24px;
+    position: relative;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.2s;
+  }
+
+  .timeline-item:last-child { border-bottom: none; }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--ink);
+  }
+
+  .timeline-time {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    padding-top: 2px;
+  }
+
+  .timeline-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .timeline-task {
+    font-family: 'Lora', serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--parchment);
+  }
+
+  .timeline-detail {
+    font-family: 'Lora', serif;
+    font-size: 0.8rem;
+    color: var(--warm-gray);
+    font-style: italic;
+  }
+
+  /* ── SERVING SECTION ── */
+  .serving-card {
+    background: linear-gradient(135deg, var(--beet-deep) 0%, var(--beet) 100%);
+    padding: 48px 40px;
+    margin-bottom: 64px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .serving-card::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 1px solid rgba(201,168,76,0.3);
+    pointer-events: none;
+  }
+
+  .serving-card::after {
+    content: '❋';
+    position: absolute;
+    font-size: 12rem;
+    color: rgba(255,255,255,0.03);
+    right: -20px; bottom: -30px;
+    line-height: 1;
+  }
+
+  .serving-title {
+    font-family: 'IM Fell English', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--cream);
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+
+  .serving-text {
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    color: var(--parchment);
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.8;
+    opacity: 0.9;
+  }
+
+  .serving-items {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 28px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .serving-item {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(201,168,76,0.4);
+    padding: 12px 24px;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.85rem;
+    color: var(--gold-light);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── FOOTER POEM ── */
+  .footer-poem {
+    text-align: center;
+    padding: 60px 24px 80px;
+    background: var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .footer-poem::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: repeating-linear-gradient(90deg,
+      var(--beet) 0, var(--beet) 30px,
+      var(--gold) 30px, var(--gold) 60px,
+      var(--dill) 60px, var(--dill) 90px
+    );
+  }
+
+  .poem-text {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2.2vw, 1.25rem);
+    color: var(--parchment);
+    line-height: 2.2;
+    opacity: 0.85;
+    max-width: 500px;
+    margin: 40px auto 0;
+  }
+
+  .poem-attribution {
+    font-family: 'Lora', serif;
+    font-size: 0.75rem;
+    color: var(--warm-gray);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 24px;
+  }
+
+  /* ── TIP CALLOUT ── */
+  .tip-callout {
+    background: var(--sour-cream);
+    border-left: 4px solid var(--dill);
+    padding: 20px 24px;
+    margin: 28px 0;
+    position: relative;
+  }
+
+  .tip-callout::before {
+    content: 'Бабушкин совет';
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--dill);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .tip-callout p {
+    font-family: 'Lora', serif;
+    font-size: 0.88rem;
+    color: var(--ink);
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── SERVINGS SCALER ── */
+  .scaler-bar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: var(--sour-cream);
+    border: 1px solid var(--gold-light);
+    border-left: 4px solid var(--beet);
+    padding: 16px 24px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+
+  .scaler-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--beet);
+    font-weight: 700;
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .scaler-controls {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 1px solid var(--gold);
+  }
+
+  .scaler-btn {
+    background: var(--beet);
+    color: var(--cream);
+    border: none;
+    width: 40px;
+    height: 40px;
+    font-size: 1.3rem;
+    font-family: 'Playfair Display', serif;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  .scaler-btn:hover { background: var(--beet-light); }
+  .scaler-btn:disabled { background: var(--warm-gray); cursor: not-allowed; }
+
+  .scaler-count {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: var(--ink);
+    width: 52px;
+    text-align: center;
+    background: white;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid var(--gold);
+    border-right: 1px solid var(--gold);
+  }
+
+  .scaler-note {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 0.82rem;
+    color: var(--warm-gray);
+  }
+
+  .qty {
+    font-weight: 600;
+    color: var(--beet);
+    transition: color 0.3s;
+  }
+
+  .qty.changed {
+    color: var(--dill);
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--cream); }
+  ::-webkit-scrollbar-thumb { background: var(--beet); border-radius: 0; }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<header class="hero">
+  <div class="hero-border-top"></div>
+  <div class="folk-strip top"><span>✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</span></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Традиционный Рецепт &nbsp;·&nbsp; Traditional Recipe</p>
+    <h1 class="hero-cyrillic">Борщ</h1>
+    <div class="hero-divider"></div>
+    <p class="hero-subtitle">Classic Red Borscht &nbsp;·&nbsp; The taste of somewhere you still call home</p>
+    <div class="hero-meta" style="margin-top:32px;">
+      <div class="meta-item">
+        <span class="meta-label">Total Time</span>
+        <span class="meta-value">~2 Hours</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Active Time</span>
+        <span class="meta-value">~40 min</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Serves</span>
+        <span class="meta-value" id="hero-serves">4</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Style</span>
+        <span class="meta-value">Ukrainian</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="folk-strip bottom"><span>✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</span></div>
+  <div class="hero-border-bottom"></div>
+</header>
+
+<!-- ── INTRO ── -->
+<section class="intro-band">
+  <p class="intro-quote">
+    Every family has a different borscht. Every grandmother swears hers is the only real one. She is right.
+  </p>
+  <p class="intro-attribution">— A truth universally acknowledged in every Ukrainian kitchen</p>
+</section>
+
+<!-- ── INGREDIENTS ── -->
+<main class="main-content">
+
+  <div class="section-header reveal">
+    <span class="section-title">Ingredients / Ингредиенты</span>
+  </div>
+
+  <!-- ── SERVINGS SCALER ── -->
+  <div class="scaler-bar reveal">
+    <span class="scaler-label">Adjust Servings</span>
+    <div class="scaler-controls">
+      <button class="scaler-btn" id="btn-minus" aria-label="Fewer servings">−</button>
+      <span class="scaler-count" id="scaler-count">4</span>
+      <button class="scaler-btn" id="btn-plus" aria-label="More servings">+</button>
+    </div>
+    <span class="scaler-note" id="scaler-note">Base recipe</span>
+  </div>
+
+  <div class="ingredients-grid">
+    <div class="ingredient-group reveal">
+      <p class="group-label">🥩 For the Broth</p>
+      <ul class="ingredient-list" id="broth-list"></ul>
+    </div>
+
+    <div class="ingredient-group reveal">
+      <p class="group-label">🫙 For the Soup</p>
+      <ul class="ingredient-list" id="soup-list"></ul>
+    </div>
+
+    <div class="ingredient-group reveal">
+      <p class="group-label">🍞 For Serving</p>
+      <ul class="ingredient-list">
+        <li>Sour cream <em>(generous dollop per bowl)</em></li>
+        <li>Fresh dill</li>
+        <li>Rye bread</li>
+        <li class="optional">Pampushki (garlic rolls)</li>
+      </ul>
+      <div style="margin-top:20px; padding-top:14px; border-top:1px solid var(--parchment);">
+        <p class="group-label" style="font-size:0.65rem;">📝 A Note on Beets</p>
+        <p style="font-family:'Lora',serif; font-size:0.78rem; line-height:1.6; color:var(--warm-gray); font-style:italic;">Use fresh beets, always. The jarred kind will betray you and your grandmother's memory in equal measure.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── DIRECTIONS ── -->
+  <div class="section-header reveal">
+    <span class="section-title">Directions / Приготовление</span>
+  </div>
+
+  <ol class="directions-list">
+
+    <li class="step reveal">
+      <div class="step-number">1</div>
+      <div class="step-body">
+        <h3 class="step-name"><span class="step-icon">🫕</span> Prepare the Broth</h3>
+        <ul class="step-instructions">
+          <li>Combine beef, <strong>cold</strong> water, bay leaf, peppercorns, and salt in a large pot. Starting with cold water draws out more flavor from the bone.</li>
+          <li>Bring to a boil slowly over medium heat, skimming the gray foam as it rises — this is patience work, this is borscht.</li>
+          <li>Reduce to a gentle simmer and cook uncovered for 1 to 1½ hours until the meat is tender.</li>
+          <li>Remove the meat, let it cool slightly, cut into bite-sized pieces, and return to the broth.</li>
+        </ul>
+
+        <div class="tip-callout">
+          <p>The broth is the soul of the soup. Don't rush it. Put on some music, look out the window, and let the smell fill your kitchen the way it used to fill the one you grew up in.</p>
+        </div>
+      </div>
+    </li>
+
+    <li class="step reveal">
+      <div class="step-number">2</div>
+      <div class="step-body">
+        <h3 class="step-name"><span class="step-icon">🫚</span> Prepare the Beet Base — <em>Zazharka</em></h3>
+        <ul class="step-instructions">
+          <li>Heat the sunflower oil in a skillet over medium heat. Sunflower oil, if you can — it smells right.</li>
+          <li>Add the grated beets and sauté for 5 minutes, stirring occasionally.</li>
+          <li>Add the vinegar (or lemon juice), sugar, and tomato paste. Add grated tomato here if using.</li>
+          <li>Simmer on low for 10 minutes, stirring, until the beets are tender, glossy, and deeply red. This is the zazharka — the heart of the color and flavor.</li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="step reveal">
+      <div class="step-number">3</div>
+      <div class="step-body">
+        <h3 class="step-name"><span class="step-icon">🥔</span> Build the Soup</h3>
+        <ul class="step-instructions">
+          <li>Bring the broth back to a gentle simmer. Add the diced potatoes. Cook for 10 minutes.</li>
+          <li>Add the shredded cabbage. Cook another 10–15 minutes until the cabbage softens but still has some body.</li>
+          <li>Stir in the beet zazharka. Watch the whole pot turn that impossible, magnificent red. Simmer together for 10 minutes.</li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="step reveal">
+      <div class="step-number">4</div>
+      <div class="step-body">
+        <h3 class="step-name"><span class="step-icon">🧅</span> Finish the Flavors</h3>
+        <ul class="step-instructions">
+          <li>Add the chopped onion, grated carrot, and minced garlic (if using). Stir well.</li>
+          <li>Simmer for 5–10 minutes until all vegetables are soft and the flavors have married.</li>
+          <li>Taste. Adjust salt, pepper, and acidity. A little more vinegar if it needs brightness; a pinch of sugar if it bites too sharp.</li>
+          <li>Stir in the fresh dill. Save some for serving.</li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="step reveal">
+      <div class="step-number">5</div>
+      <div class="step-body">
+        <h3 class="step-name"><span class="step-icon">🕐</span> Rest — the Most Important Step</h3>
+        <ul class="step-instructions">
+          <li>Turn off the heat. Place a lid on the pot.</li>
+          <li>Let the borscht rest for at least 30 minutes. This is not optional. This is not negotiable. The flavors need time to become one thing, not many things.</li>
+          <li>Borscht eaten the same day it was made is good. Borscht reheated the next morning is transcendent.</li>
+        </ul>
+      </div>
+    </li>
+
+  </ol>
+
+  <!-- ── TIMING GUIDE ── -->
+  <div class="timing-section reveal">
+    <div class="section-header">
+      <span class="section-title">Timing Guide / Расписание</span>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <span class="timeline-time">0:00</span>
+        <div class="timeline-content">
+          <span class="timeline-task">Start the Broth</span>
+          <span class="timeline-detail">Beef, bay leaf, peppercorns into cold water — bring up slowly</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-time">0:45</span>
+        <div class="timeline-content">
+          <span class="timeline-task">Make the Zazharka</span>
+          <span class="timeline-detail">Sauté beets with vinegar, sugar, tomato paste — 10 min simmer</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-time">1:15</span>
+        <div class="timeline-content">
+          <span class="timeline-task">Add Potatoes</span>
+          <span class="timeline-detail">Simmer 10 minutes in the broth</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-time">1:25</span>
+        <div class="timeline-content">
+          <span class="timeline-task">Add Cabbage</span>
+          <span class="timeline-detail">Simmer 10–15 minutes until tender</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-time">1:35</span>
+        <div class="timeline-content">
+          <span class="timeline-task">Add Beet Zazharka</span>
+          <span class="timeline-detail">Stir in and simmer 10 more minutes</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-time">1:45</span>
+        <div class="timeline-content">
+          <span class="timeline-task">Add Onion, Carrot, Garlic</span>
+          <span class="timeline-detail">Final simmer 5–10 minutes</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-time">1:55</span>
+        <div class="timeline-content">
+          <span class="timeline-task">Rest — Lid On, Heat Off</span>
+          <span class="timeline-detail">30 minutes of patience. The most important step.</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-time">2:25</span>
+        <div class="timeline-content">
+          <span class="timeline-task">Serve</span>
+          <span class="timeline-detail">Hot bowls, sour cream, fresh dill, rye bread, and someone you love nearby</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SERVING ── -->
+  <div class="serving-card reveal">
+    <h2 class="serving-title">Подавать с душой</h2>
+    <p class="serving-text">Serve hot, in deep bowls. A generous spoonful of sour cream stirred in at the table. More fresh dill. Rye bread on the side, or pampushki if you have them — those small garlic-and-dill rolls that make a meal feel like a celebration.</p>
+    <div class="serving-items">
+      <span class="serving-item">Sour Cream</span>
+      <span class="serving-item">Fresh Dill</span>
+      <span class="serving-item">Rye Bread</span>
+      <span class="serving-item">Pampushki</span>
+    </div>
+  </div>
+
+</main>
+
+<!-- ── FOOTER POEM ── -->
+<footer class="footer-poem">
+  <div style="color:var(--gold); font-size:1.5rem; letter-spacing:16px;">✦ ✦ ✦</div>
+  <p class="poem-text">
+    You can take a person out of Ukraine.<br>
+    You cannot take Ukraine out of the borscht.<br>
+    The beet remembers everything.
+  </p>
+  <p class="poem-attribution">— Сделано далеко от дома, но не совсем</p>
+</footer>
+
+<script>
+  // ── REVEAL ANIMATIONS ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── SERVINGS SCALER ──
+  const BASE = 4;
+  let servings = 4;
+
+  // Each ingredient: { qty, unit, label, optional }
+  // qty is the base (for 4 servings)
+  const broth = [
+    { qty: 0.75,  unit: 'lb',   label: 'beef shank or short ribs <em>(bone-in)</em>' },
+    { qty: 6,     unit: 'cups', label: 'cold water' },
+    { qty: 1,     unit: '',     label: 'bay leaf', count: true },
+    { qty: 4.5,   unit: '',     label: 'whole peppercorns', count: true },
+    { qty: 0.75,  unit: 'tsp',  label: 'salt' },
+  ];
+
+  const soup = [
+    { qty: 1.5,   unit: '',     label: 'medium beets, peeled &amp; grated', count: true },
+    { qty: 1,     unit: '',     label: 'small carrot, peeled &amp; grated', count: true },
+    { qty: 1,     unit: '',     label: 'small onion, finely chopped', count: true },
+    { qty: 2,     unit: 'cups', label: 'cabbage (~⅓ small head), shredded' },
+    { qty: 1.5,   unit: '',     label: 'medium potatoes, diced', count: true },
+    { qty: 1.5,   unit: 'tbsp', label: 'tomato paste' },
+    { qty: 2,     unit: 'tsp',  label: 'vinegar or lemon juice' },
+    { qty: 0.75,  unit: 'tsp',  label: 'sugar' },
+    { qty: 1.5,   unit: 'tbsp', label: 'sunflower oil' },
+    { qty: 1.5,   unit: 'tbsp', label: 'fresh dill, chopped' },
+    { qty: null,  unit: '',     label: 'Salt &amp; pepper to taste' },
+    { qty: 1,     unit: '',     label: 'garlic clove, minced', count: true, optional: true },
+    { qty: 0.5,   unit: '',     label: 'small tomato, grated', count: true, optional: true },
+  ];
+
+  function formatQty(raw, isCount) {
+    if (raw === null) return null;
+
+    // Round to sensible precision
+    const n = Math.round(raw * 8) / 8; // nearest 1/8
+
+    if (isCount) {
+      // Show whole numbers or simple fractions for countable things
+      if (n === Math.round(n)) return String(Math.round(n));
+      const whole = Math.floor(n);
+      const frac = n - whole;
+      const fracStr = frac < 0.2 ? '⅛' : frac < 0.4 ? '¼' : frac < 0.6 ? '½' : frac < 0.9 ? '¾' : '';
+      return whole > 0 ? `${whole}${fracStr}` : fracStr;
+    }
+
+    // Volume / weight
+    if (n >= 1) {
+      const whole = Math.floor(n);
+      const frac = n - whole;
+      const fracMap = [[0.125,'⅛'],[0.25,'¼'],[0.333,'⅓'],[0.5,'½'],[0.667,'⅔'],[0.75,'¾']];
+      let closest = '';
+      let minDiff = 0.07;
+      for (const [val, sym] of fracMap) {
+        if (Math.abs(frac - val) < minDiff) { minDiff = Math.abs(frac - val); closest = sym; }
+      }
+      return whole > 0 && closest ? `${whole}${closest}` : whole > 0 ? String(whole) : closest || String(n.toFixed(2));
+    } else {
+      const fracMap = [[0.125,'⅛'],[0.25,'¼'],[0.333,'⅓'],[0.5,'½'],[0.667,'⅔'],[0.75,'¾'],[1,'1']];
+      let closest = String(n.toFixed(2));
+      let minDiff = 0.07;
+      for (const [val, sym] of fracMap) {
+        if (Math.abs(n - val) < minDiff) { minDiff = Math.abs(n - val); closest = sym; }
+      }
+      return closest;
+    }
+  }
+
+  function smartUnit(unit, qty) {
+    // Pluralise cups loosely
+    return unit;
+  }
+
+  function renderList(listId, ingredients) {
+    const ul = document.getElementById(listId);
+    ul.innerHTML = ingredients.map(ing => {
+      const scale = servings / BASE;
+      let qtyStr = '';
+      if (ing.qty !== null) {
+        const scaled = ing.qty * scale;
+        qtyStr = formatQty(scaled, ing.count);
+      }
+      const unitStr = ing.unit ? ' ' + ing.unit : '';
+      const qtyHtml = qtyStr ? `<span class="qty">${qtyStr}${unitStr}</span> ` : '';
+      const cls = ing.optional ? ' class="optional"' : '';
+      const prefix = ing.optional ? 'Optional: ' : '';
+      return `<li${cls}>${prefix}${qtyHtml}${ing.label}</li>`;
+    }).join('');
+  }
+
+  function updateAll() {
+    renderList('broth-list', broth);
+    renderList('soup-list', soup);
+
+    document.getElementById('scaler-count').textContent = servings;
+    document.getElementById('hero-serves').textContent = servings;
+
+    const note = servings === BASE ? 'Base recipe'
+      : servings < BASE ? `Scaled down (÷${(BASE/servings).toFixed(1).replace('.0','')})`
+      : `Scaled up (×${(servings/BASE).toFixed(1).replace('.0','')})`;
+    document.getElementById('scaler-note').textContent = note;
+
+    document.getElementById('btn-minus').disabled = servings <= 1;
+    document.getElementById('btn-plus').disabled = servings >= 20;
+
+    // Flash qty values
+    document.querySelectorAll('.qty').forEach(el => {
+      el.classList.add('changed');
+      setTimeout(() => el.classList.remove('changed'), 600);
+    });
+  }
+
+  document.getElementById('btn-minus').addEventListener('click', () => {
+    if (servings > 1) { servings--; updateAll(); }
+  });
+  document.getElementById('btn-plus').addEventListener('click', () => {
+    if (servings < 20) { servings++; updateAll(); }
+  });
+
+  // Initial render
+  updateAll();
+</script>
+
+</body>
+</html>

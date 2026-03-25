@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harissa Avocado Bowl — CAVA Copycat</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --yellow: #F5C800;
+    --cream: #FAF3E0;
+    --dark: #1C1A17;
+    --red: #D94F38;
+    --muted: rgba(28,26,23,0.45);
+    --border: rgba(28,26,23,0.1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--dark);
+    min-height: 100vh;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--dark);
+    padding: 48px 32px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 80% 50%, rgba(245,200,0,0.12) 0%, transparent 65%),
+                radial-gradient(ellipse at 20% 80%, rgba(217,79,56,0.1) 0%, transparent 55%);
+  }
+
+  .hero-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .eyebrow {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--yellow);
+    margin-bottom: 14px;
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 10vw, 88px);
+    line-height: 0.92;
+    color: #fff;
+    margin-bottom: 18px;
+  }
+
+  .hero h1 em {
+    color: var(--yellow);
+    font-style: normal;
+  }
+
+  .hero-desc {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    color: rgba(255,255,255,0.55);
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 400px;
+    margin-bottom: 28px;
+  }
+
+  .cal-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 30px;
+    padding: 7px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .cal-badge span { color: var(--yellow); }
+
+  /* ── SERVING SCALER ── */
+  .scaler-wrap {
+    background: var(--yellow);
+    padding: 0 32px;
+  }
+
+  .scaler {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .scaler-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: rgba(28,26,23,0.55);
+  }
+
+  .scaler-controls {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: rgba(28,26,23,0.1);
+    border-radius: 30px;
+    overflow: hidden;
+  }
+
+  .scaler-btn {
+    width: 38px;
+    height: 38px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+  }
+
+  .scaler-btn:hover { background: rgba(28,26,23,0.12); }
+
+  .scaler-count {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    min-width: 36px;
+    text-align: center;
+    color: var(--dark);
+  }
+
+  .scaler-note {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(28,26,23,0.5);
+    font-style: italic;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 40px 32px 64px;
+  }
+
+  /* ── SECTION HEADER ── */
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--muted);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── INGREDIENTS ── */
+  .ingredients { margin-bottom: 48px; }
+
+  .ing-group { margin-bottom: 28px; }
+
+  .ing-group-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+
+  .ing-item {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+    gap: 12px;
+  }
+
+  .ing-name {
+    font-size: 14px;
+    font-weight: 500;
+    flex: 1;
+  }
+
+  .ing-note {
+    font-size: 11px;
+    color: var(--red);
+    font-weight: 600;
+    margin-left: 6px;
+  }
+
+  .ing-qty {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--dark);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ── STEPS ── */
+  .steps { margin-bottom: 48px; }
+
+  .step {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 0 18px;
+    margin-bottom: 28px;
+    align-items: start;
+  }
+
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    line-height: 1;
+    color: var(--yellow);
+    padding-top: 2px;
+  }
+
+  .step-body {}
+
+  .step-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+
+  .step-text {
+    font-size: 14px;
+    line-height: 1.65;
+    color: rgba(28,26,23,0.8);
+  }
+
+  /* ── TIMER ── */
+  .timer-wrap {
+    margin-top: 12px;
+  }
+
+  .timer-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--dark);
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.3px;
+    transition: background 0.15s, transform 0.1s;
+  }
+
+  .timer-btn:hover { background: #333; transform: translateY(-1px); }
+  .timer-btn.running { background: var(--red); }
+  .timer-btn.done { background: #2d7a3a; }
+
+  .timer-icon { font-size: 14px; }
+
+  /* ── TIPS ── */
+  .tips-box {
+    background: var(--dark);
+    border-radius: 16px;
+    padding: 28px;
+    color: #fff;
+  }
+
+  .tips-box .section-title { color: rgba(255,255,255,0.35); border-color: rgba(255,255,255,0.1); }
+
+  .tip {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 14px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.75);
+  }
+
+  .tip:last-child { margin-bottom: 0; }
+
+  .tip-dot {
+    color: var(--yellow);
+    font-size: 18px;
+    line-height: 1.4;
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    font-size: 11px;
+    color: var(--muted);
+    padding: 0 32px 32px;
+    max-width: 680px;
+    margin: 0 auto;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── ALERT ── */
+  .alert {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--dark);
+    color: #fff;
+    padding: 14px 24px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    z-index: 100;
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .alert.show { transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">CAVA COPYCAT RECIPE</div>
+    <h1>HARISSA<br><em>AVOCADO</em><br>BOWL</h1>
+    <p class="hero-desc">Harissa-glazed chicken over fluffy rice with creamy avocado, fire-roasted corn, hummus, and homemade Crazy Feta.</p>
+    <div class="cal-badge">~<span id="cal-display">840</span> Cal per serving</div>
+  </div>
+</div>
+
+<div class="scaler-wrap">
+  <div class="scaler">
+    <div class="scaler-label">SERVINGS</div>
+    <div class="scaler-controls">
+      <button class="scaler-btn" onclick="changeServings(-1)">−</button>
+      <div class="scaler-count" id="serving-count">4</div>
+      <button class="scaler-btn" onclick="changeServings(1)">+</button>
+    </div>
+    <div class="scaler-note" id="scaler-note"></div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- INGREDIENTS -->
+  <div class="ingredients">
+    <div class="section-title">INGREDIENTS</div>
+
+    <div class="ing-group">
+      <div class="ing-group-name">Chicken</div>
+      <div class="ing-item">
+        <div class="ing-name">Boneless skinless chicken thighs</div>
+        <div class="ing-qty" data-base="1.5" data-unit="lb"></div>
+      </div>
+      <div class="ing-item">
+        <div class="ing-name">Harissa paste <span class="ing-note">⚑ go mild for toddlers</span></div>
+        <div class="ing-qty" data-base="3" data-unit="tbsp"></div>
+      </div>
+      <div class="ing-item">
+        <div class="ing-name">Honey</div>
+        <div class="ing-qty" data-base="2" data-unit="tbsp"></div>
+      </div>
+      <div class="ing-item">
+        <div class="ing-name">Olive oil</div>
+        <div class="ing-qty" data-base="2" data-unit="tbsp"></div>
+      </div>
+      <div class="ing-item">
+        <div class="ing-name">Salt</div>
+        <div class="ing-qty" data-base="1" data-unit="tsp"></div>
+      </div>
+    </div>
+
+    <div class="ing-group">
+      <div class="ing-group-name">Bowl Base</div>
+      <div class="ing-item">
+        <div class="ing-name">Basmati rice (dry)</div>
+        <div class="ing-qty" data-base="1.5" data-unit="cup"></div>
+      </div>
+      <div class="ing-item">
+        <div class="ing-name">Mixed greens / arugula</div>
+        <div class="ing-qty" data-base="4" data-unit="cup"></div>
+      </div>
+    </div>
+
+    <div class="ing-group">
+      <div class="ing-group-name">Toppings</div>
+      <div class="ing-item">
+        <div class="ing-name">Frozen fire-roasted corn</div>
+        <div class="ing-qty" data-base="1.5" data-unit="cup"></div>
+      </div>
+      <div class="ing-item">
+        <div class="ing-name">Ripe avocados</div>
+        <div class="ing-qty" data-base="2" data-unit=""></div>
+      </div>
+      <div class="ing-item">
+        <div class="ing-name">Store-bought hummus</div>
+        <div class="ing-qty" data-base="0.5" data-unit="cup"></div>
+      </div>
+      <div class="ing-item">
+        <div class="ing-name">Pickled red onions</div>
+        <div class="ing-qty" data-base="0.25" data-unit="cup"></div>
+      </div>
+    </div>
+
+    <div class="ing-group">
+      <div class="ing-group-name">Crazy Feta (homemade)</div>
+      <div class="ing-item">
+        <div class="ing-name">Feta cheese, crumbled</div>
+        <div class="ing-qty" data-base="4" data-unit="oz"></div>
+      </div>
+      <div class="ing-item">
+        <div class="ing-name">Jalapeño, minced</div>
+        <div class="ing-qty" data-base="1" data-unit=""></div>
+      </div>
+      <div class="ing-item">
+        <div class="ing-name">Olive oil</div>
+        <div class="ing-qty" data-base="1" data-unit="tbsp"></div>
+      </div>
+    </div>
+
+    <div class="ing-group">
+      <div class="ing-group-name">Harissa Vinaigrette</div>
+      <div class="ing-item">
+        <div class="ing-name">Red wine vinegar</div>
+        <div class="ing-qty" data-base="2" data-unit="tbsp"></div>
+      </div>
+      <div class="ing-item">
+        <div class="ing-name">Olive oil</div>
+        <div class="ing-qty" data-base="3" data-unit="tbsp"></div>
+      </div>
+      <div class="ing-item">
+        <div class="ing-name">Harissa paste</div>
+        <div class="ing-qty" data-base="1" data-unit="tbsp"></div>
+      </div>
+      <div class="ing-item">
+        <div class="ing-name">Lemon juice</div>
+        <div class="ing-qty" data-base="1" data-unit="tbsp"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEPS -->
+  <div class="steps">
+    <div class="section-title">METHOD</div>
+
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-body">
+        <div class="step-title">Marinate the Chicken</div>
+        <div class="step-text">Whisk together harissa paste, honey, olive oil, and salt. Coat chicken thighs thoroughly in the marinade. Let sit for at least 15 minutes (or overnight in the fridge for deeper flavor).</div>
+        <div class="timer-wrap">
+          <button class="timer-btn" onclick="startTimer(this, 15*60, 'Marinating...')">
+            <span class="timer-icon">⏱</span> Start 15-min timer
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-body">
+        <div class="step-title">Cook the Rice</div>
+        <div class="step-text">Cook basmati rice according to package directions (typically 1:1.5 rice-to-water ratio). Fluff with a fork and season lightly with salt. Keep warm.</div>
+        <div class="timer-wrap">
+          <button class="timer-btn" onclick="startTimer(this, 18*60, 'Rice cooking...')">
+            <span class="timer-icon">⏱</span> Start 18-min timer
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-body">
+        <div class="step-title">Make the Crazy Feta</div>
+        <div class="step-text">In a small bowl, mash together crumbled feta, minced jalapeño, and olive oil with a fork until roughly combined — leave it a little chunky. Taste and adjust salt. Refrigerate until ready to serve.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-body">
+        <div class="step-title">Make the Harissa Vinaigrette</div>
+        <div class="step-text">Whisk together red wine vinegar, olive oil, harissa paste, and lemon juice. Season with salt and pepper to taste. Set aside.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">05</div>
+      <div class="step-body">
+        <div class="step-title">Char the Corn</div>
+        <div class="step-text">Heat a dry skillet over medium-high heat. Add frozen fire-roasted corn and cook for 4–5 minutes, stirring occasionally, until lightly charred. Set aside.</div>
+        <div class="timer-wrap">
+          <button class="timer-btn" onclick="startTimer(this, 5*60, 'Charring corn...')">
+            <span class="timer-icon">⏱</span> Start 5-min timer
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">06</div>
+      <div class="step-body">
+        <div class="step-title">Cook the Chicken</div>
+        <div class="step-text">Heat a skillet or grill pan over medium-high heat with a little oil. Cook marinated chicken 5–6 minutes per side until cooked through and slightly caramelized. Rest for 5 minutes, then slice.</div>
+        <div class="timer-wrap">
+          <button class="timer-btn" onclick="startTimer(this, 11*60, 'Chicken cooking...')">
+            <span class="timer-icon">⏱</span> Start 11-min timer
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">07</div>
+      <div class="step-body">
+        <div class="step-title">Assemble the Bowls</div>
+        <div class="step-text">Divide rice among bowls as the base. Add a handful of greens to each and drizzle with harissa vinaigrette. Top with sliced chicken, charred corn, sliced avocado, a scoop of hummus, and a spoonful of Crazy Feta. Finish with pickled red onions.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIPS -->
+  <div class="tips-box">
+    <div class="section-title">TIPS & NOTES</div>
+    <div class="tip"><span class="tip-dot">◆</span><span><strong>Crazy Feta</strong> is the secret weapon — the jalapeño heat against creamy feta is what makes this taste like CAVA.</span></div>
+    <div class="tip"><span class="tip-dot">◆</span><span><strong>Harissa paste</strong> varies in heat level — taste yours first and adjust to your family's spice tolerance.</span></div>
+    <div class="tip"><span class="tip-dot">◆</span><span><strong>Toddler tip:</strong> Set aside plain rice, chicken, and avocado before adding harissa. Keep it simple and mild.</span></div>
+    <div class="tip"><span class="tip-dot">◆</span><span><strong>Meal prep:</strong> Leftovers keep well in separate containers in the fridge for 3–4 days. Add avocado fresh each time.</span></div>
+    <div class="tip"><span class="tip-dot">◆</span><span><strong>SuperGreens swap:</strong> For CAVA's blend, use a mix of arugula, baby spinach, and kale.</span></div>
+  </div>
+
+</div>
+
+<footer>CAVA COPYCAT · HARISSA AVOCADO BOWL · MADE WITH ♥</footer>
+
+<div class="alert" id="alert"></div>
+
+<script>
+  const BASE_SERVINGS = 4;
+  let servings = 4;
+
+  function fmtQty(val, unit) {
+    // Round to nearest useful fraction
+    const fracs = [[1/4,'¼'],[1/3,'⅓'],[1/2,'½'],[2/3,'⅔'],[3/4,'¾']];
+    const whole = Math.floor(val);
+    const rem = val - whole;
+    let fracStr = '';
+    if (rem > 0.05) {
+      let best = null, bestDiff = 1;
+      for (const [f, s] of fracs) {
+        const d = Math.abs(rem - f);
+        if (d < bestDiff) { bestDiff = d; best = s; }
+      }
+      if (bestDiff < 0.12) fracStr = best;
+      else fracStr = rem.toFixed(1).replace(/^0/, '');
+    }
+    const numStr = whole > 0 ? (whole + (fracStr ? ' ' + fracStr : '')) : (fracStr || val.toFixed(1));
+    return unit ? numStr + ' ' + unit : numStr;
+  }
+
+  function updateIngredients() {
+    const ratio = servings / BASE_SERVINGS;
+    document.querySelectorAll('.ing-qty[data-base]').forEach(el => {
+      const base = parseFloat(el.dataset.base);
+      const unit = el.dataset.unit;
+      el.textContent = fmtQty(base * ratio, unit);
+    });
+    document.getElementById('serving-count').textContent = servings;
+    // cal ~840 per serving
+    document.getElementById('cal-display').textContent = (840).toLocaleString();
+
+    const note = document.getElementById('scaler-note');
+    if (servings === 3) note.textContent = '2 adults + 1 toddler 👶';
+    else if (servings === 1) note.textContent = 'Just for me!';
+    else if (servings === 2) note.textContent = 'Date night 🕯';
+    else if (servings >= 6) note.textContent = 'Crowd approved 🎉';
+    else note.textContent = '';
+  }
+
+  function changeServings(delta) {
+    servings = Math.max(1, Math.min(12, servings + delta));
+    updateIngredients();
+  }
+
+  // Timers
+  const timerIntervals = new WeakMap();
+
+  function startTimer(btn, totalSecs, label) {
+    if (timerIntervals.has(btn)) {
+      clearInterval(timerIntervals.get(btn));
+      timerIntervals.delete(btn);
+      btn.classList.remove('running', 'done');
+      btn.innerHTML = `<span class="timer-icon">⏱</span> ${btn.dataset.originalLabel}`;
+      return;
+    }
+    if (!btn.dataset.originalLabel) btn.dataset.originalLabel = btn.innerText.trim();
+    let remaining = totalSecs;
+    btn.classList.add('running');
+    btn.classList.remove('done');
+
+    function tick() {
+      if (remaining <= 0) {
+        clearInterval(timerIntervals.get(btn));
+        timerIntervals.delete(btn);
+        btn.classList.remove('running');
+        btn.classList.add('done');
+        btn.innerHTML = `<span class="timer-icon">✓</span> Done!`;
+        showAlert('⏰ Timer done: ' + label.replace('...', ''));
+        return;
+      }
+      const m = Math.floor(remaining / 60);
+      const s = remaining % 60;
+      btn.innerHTML = `<span class="timer-icon">⏱</span> ${label} ${m}:${s.toString().padStart(2,'0')} (tap to cancel)`;
+      remaining--;
+    }
+    tick();
+    timerIntervals.set(btn, setInterval(tick, 1000));
+  }
+
+  function showAlert(msg) {
+    const el = document.getElementById('alert');
+    el.textContent = msg;
+    el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), 3500);
+  }
+
+  // Init
+  updateIngredients();
+</script>
+</body>
+</html>
