@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Baked Mac & Cheese — Good Eats Style</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:    #FDF6E3;
+      --cream-dark: #F5EBCC;
+      --gold:     #D4A017;
+      --gold-light: #E8C96A;
+      --orange:   #C8571B;
+      --brown:    #5C3A1E;
+      --brown-light: #8A5C30;
+      --text:     #2E1A0E;
+      --muted:    #7A6550;
+      --white:    #FFFDF7;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--cream);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background-color: var(--brown);
+      color: var(--cream);
+      padding: 64px 40px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(212,160,23,0.18) 0%, transparent 65%),
+                  repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(255,255,255,0.02) 30px, rgba(255,255,255,0.02) 31px);
+    }
+
+    .hero-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-eyebrow::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--gold-light);
+      opacity: 0.4;
+      max-width: 80px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5.2rem);
+      font-weight: 900;
+      line-height: 1.0;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: rgba(253,246,227,0.7);
+      max-width: 480px;
+      margin-top: 16px;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 32px;
+      margin-top: 36px;
+      flex-wrap: wrap;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .meta-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      opacity: 0.75;
+    }
+
+    .meta-value {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--white);
+    }
+
+    .hero-badge {
+      position: absolute;
+      top: 0;
+      right: 40px;
+      background: var(--gold);
+      color: var(--brown);
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 10px 20px;
+      clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);
+      text-align: center;
+      line-height: 1.3;
+      padding-bottom: 22px;
+    }
+
+    /* ── LAYOUT ── */
+    .content {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 40px 80px;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 48px;
+      margin-top: 48px;
+      align-items: start;
+    }
+
+    /* ── SECTION HEADERS ── */
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--brown);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--cream-dark);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── SCALER ── */
+    .scaler-bar {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: var(--white);
+      border: 1px solid var(--gold-light);
+      border-left: 4px solid var(--orange);
+      padding: 14px 20px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .scaler-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--orange);
+      font-weight: 500;
+      flex: 1;
+      min-width: 110px;
+    }
+
+    .scaler-controls {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--gold);
+    }
+
+    .scaler-btn {
+      background: var(--brown);
+      color: var(--cream);
+      border: none;
+      width: 38px;
+      height: 38px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .scaler-btn:hover { background: var(--orange); }
+    .scaler-btn:disabled { background: #bbb; cursor: not-allowed; }
+
+    .scaler-count {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      width: 48px;
+      text-align: center;
+      background: white;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-left: 1px solid var(--gold);
+      border-right: 1px solid var(--gold);
+      color: var(--brown);
+    }
+
+    .scaler-note {
+      font-style: italic;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ── INGREDIENTS ── */
+    .ingredient-group {
+      margin-bottom: 24px;
+    }
+
+    .ingredient-group-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--cream-dark);
+    }
+
+    .ingredient-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .ingredient-list li {
+      font-size: 0.92rem;
+      line-height: 1.45;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      color: var(--text);
+    }
+
+    .ingredient-list li::before {
+      content: '—';
+      color: var(--gold);
+      font-size: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .qty {
+      font-weight: 600;
+      color: var(--brown);
+      transition: color 0.3s;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.85rem;
+    }
+    .qty.changed { color: #3D6B35; }
+
+    .ingredient-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 12px;
+      padding: 10px 14px;
+      background: var(--cream-dark);
+      border-left: 3px solid var(--gold-light);
+      line-height: 1.5;
+    }
+
+    /* ── STEPS ── */
+    .steps-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .step-num {
+      width: 44px;
+      height: 44px;
+      background: var(--brown);
+      color: var(--cream);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border-radius: 2px;
+    }
+
+    .step-body {
+      padding-top: 10px;
+    }
+
+    .step-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--orange);
+      margin-bottom: 6px;
+    }
+
+    .step-text {
+      font-size: 0.93rem;
+      line-height: 1.7;
+      color: var(--text);
+    }
+
+    .step-text strong {
+      color: var(--brown);
+      font-weight: 600;
+    }
+
+    /* ── TIPS BOX ── */
+    .tips-box {
+      background: var(--brown);
+      color: var(--cream);
+      padding: 28px 32px;
+      margin-top: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tips-box::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 8rem;
+      color: rgba(255,255,255,0.05);
+      position: absolute;
+      top: -20px;
+      left: 16px;
+      line-height: 1;
+    }
+
+    .tips-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      margin-bottom: 12px;
+    }
+
+    .tips-box ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .tips-box li {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: rgba(253,246,227,0.85);
+      display: flex;
+      gap: 10px;
+    }
+
+    .tips-box li::before {
+      content: '✦';
+      color: var(--gold);
+      flex-shrink: 0;
+      font-size: 0.7rem;
+      margin-top: 3px;
+    }
+
+    /* ── TEMP CALLOUT ── */
+    .temp-callout {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: var(--brown);
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 6px 16px;
+      border-radius: 2px;
+      margin: 4px 0;
+    }
+
+    @media (max-width: 640px) {
+      .hero { padding: 48px 24px 40px; }
+      .content { padding: 0 24px 60px; }
+      .two-col { grid-template-columns: 1fr; gap: 32px; }
+      .hero-badge { right: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-badge">Good Eats<br>Inspired</div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Comfort Classics · Baked Pasta</div>
+    <h1>Baked Mac<br>&amp; <em>Cheese</em></h1>
+    <p class="hero-desc">A proper béchamel-based mac — no Velveeta shortcuts here. Sharp cheddar, a whisper of mustard, and a golden panko crust that shatters on the spoon.</p>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <span class="meta-label">Serves</span>
+        <span class="meta-value" id="hero-serves">3</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Prep</span>
+        <span class="meta-value">20 min</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Bake</span>
+        <span class="meta-value">30 min</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Temp</span>
+        <span class="meta-value">350 °F</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- CONTENT -->
+<main class="content">
+  <div class="two-col">
+
+    <!-- LEFT: INGREDIENTS -->
+    <section>
+      <h2 class="section-title">Ingredients</h2>
+
+      <!-- SCALER -->
+      <div class="scaler-bar">
+        <span class="scaler-label">Adjust Servings</span>
+        <div class="scaler-controls">
+          <button class="scaler-btn" id="btn-minus" aria-label="Fewer servings">−</button>
+          <span class="scaler-count" id="scaler-count">3</span>
+          <button class="scaler-btn" id="btn-plus" aria-label="More servings">+</button>
+        </div>
+        <span class="scaler-note" id="scaler-note">Base recipe</span>
+      </div>
+
+      <!-- PASTA -->
+      <div class="ingredient-group">
+        <div class="ingredient-group-title">Pasta</div>
+        <ul class="ingredient-list" id="group-pasta"></ul>
+      </div>
+
+      <!-- SAUCE -->
+      <div class="ingredient-group">
+        <div class="ingredient-group-title">Cheese Sauce</div>
+        <ul class="ingredient-list" id="group-sauce"></ul>
+      </div>
+
+      <!-- TOPPING -->
+      <div class="ingredient-group">
+        <div class="ingredient-group-title">Crunchy Topping</div>
+        <ul class="ingredient-list" id="group-topping"></ul>
+      </div>
+
+      <p class="ingredient-note">* Can't find panko? Coarsely chop 2 cups of seasoned salad croutons as a substitute.</p>
+    </section>
+
+    <!-- RIGHT: INSTRUCTIONS -->
+    <section>
+      <h2 class="section-title">Method</h2>
+      <ol class="steps-list">
+        <li class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">Make the Roux</div>
+            <p class="step-text">Melt <strong>3 tbsp butter</strong> in a saucepan over medium heat until the bubbling and foaming subsides — you want the water to cook off. Whisk in <strong>3 tbsp flour</strong> completely. Reduce to low and cook, stirring, until the mixture turns a pale blonde color, about <strong>2–3 minutes</strong>.</p>
+          </div>
+        </li>
+        <li class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">Build the Béchamel</div>
+            <p class="step-text">Stir in the <strong>mustard powder, paprika, bay leaf, and salt</strong>. Pour in the <strong>3 cups milk</strong> in a slow stream, whisking constantly. Bring to a gentle simmer and cook for <strong>10 minutes</strong>, stirring often, until slightly thickened.</p>
+          </div>
+        </li>
+        <li class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">Add Egg &amp; Cheese</div>
+            <p class="step-text">Discard the bay leaf. Beat <strong>1 egg</strong>, then temper it by slowly ladling some hot sauce into it while whisking before adding back to the pot — this prevents scrambling. Stir in <strong>¾ of the shredded cheddar</strong> until melted. Season with salt and black pepper. Fold in the cooked macaroni.</p>
+          </div>
+        </li>
+        <li class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <div class="step-title">Assemble &amp; Bake</div>
+            <p class="step-text">Pour the mixture into a greased casserole dish. Scatter the remaining <strong>¼ cheese</strong> on top. Melt the topping butter, toss with the panko breadcrumbs, and spread evenly over the surface.</p>
+            <br>
+            <div class="temp-callout">Bake at 350 °F for 30 min</div>
+            <br>
+            <p class="step-text" style="margin-top:8px;">Bake until the top is deep golden brown and the edges are bubbling. Rest 5 minutes before serving.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+  </div>
+
+  <!-- TIPS -->
+  <div class="tips-box">
+    <h3>Alton's Wisdom</h3>
+    <ul>
+      <li>Cook your pasta just to al dente — it'll keep cooking in the oven. Slightly underdone is perfect here.</li>
+      <li>Tempering the egg is the key step most people skip. A scrambled-egg sauce is not what we're after.</li>
+      <li>Grate your own cheddar. Pre-shredded cheese has anti-caking agents that make the sauce grainy.</li>
+      <li>The mustard powder doesn't make it taste like mustard — it amplifies the cheese flavor. Don't skip it.</li>
+    </ul>
+  </div>
+</main>
+
+<script>
+  // ── SERVINGS SCALER ──
+  const BASE = 3; // 2 adults + 1 toddler
+  let servings = 3;
+
+  const groupPasta = [
+    { qty: 0.5,  unit: 'lb',   label: 'elbow macaroni, cooked al dente' },
+  ];
+
+  const groupSauce = [
+    { qty: 3,    unit: 'tbsp', label: 'unsalted butter' },
+    { qty: 3,    unit: 'tbsp', label: 'all-purpose flour' },
+    { qty: 1,    unit: 'tbsp', label: 'powdered mustard' },
+    { qty: 1,    unit: '',     label: 'bay leaf', count: true },
+    { qty: 0.5,  unit: 'tsp',  label: 'paprika' },
+    { qty: 1,    unit: 'tsp',  label: 'kosher salt' },
+    { qty: null, unit: '',     label: 'fresh black pepper, to taste' },
+    { qty: 3,    unit: 'cups', label: 'whole milk' },
+    { qty: 1,    unit: '',     label: 'large egg', count: true },
+    { qty: 12,   unit: 'oz',   label: 'sharp cheddar, shredded' },
+  ];
+
+  const groupTopping = [
+    { qty: 3,    unit: 'tbsp', label: 'unsalted butter, melted' },
+    { qty: 1,    unit: 'cup',  label: 'panko breadcrumbs' },
+  ];
+
+  function formatQty(raw, isCount) {
+    if (raw === null) return null;
+    const n = Math.round(raw * 8) / 8;
+
+    const fracMap = [
+      [0.125,'⅛'],[0.25,'¼'],[0.333,'⅓'],[0.5,'½'],
+      [0.667,'⅔'],[0.75,'¾'],[0.875,'⅞']
+    ];
+
+    function nearFrac(val) {
+      let best = ''; let minD = 0.07;
+      for (const [v, s] of fracMap) {
+        if (Math.abs(val - v) < minD) { minD = Math.abs(val - v); best = s; }
+      }
+      return best;
+    }
+
+    if (n >= 1) {
+      const whole = Math.floor(n);
+      const frac = nearFrac(n - whole);
+      return (whole > 0 && frac) ? `${whole}${frac}` : whole > 0 ? String(whole) : frac || n.toFixed(1);
+    } else {
+      return nearFrac(n) || n.toFixed(2);
+    }
+  }
+
+  function renderList(listId, ingredients) {
+    const ul = document.getElementById(listId);
+    if (!ul) return;
+    ul.innerHTML = ingredients.map(ing => {
+      const scaled = ing.qty !== null ? ing.qty * (servings / BASE) : null;
+      const qtyStr = scaled !== null ? formatQty(scaled, ing.count) : null;
+      const unitStr = ing.unit ? ' ' + ing.unit : '';
+      const qtyHtml = qtyStr ? `<span class="qty">${qtyStr}${unitStr}</span> ` : '';
+      return `<li>${qtyHtml}${ing.label}</li>`;
+    }).join('');
+  }
+
+  function updateAll() {
+    renderList('group-pasta', groupPasta);
+    renderList('group-sauce', groupSauce);
+    renderList('group-topping', groupTopping);
+
+    document.getElementById('scaler-count').textContent = servings;
+    const heroServes = document.getElementById('hero-serves');
+    if (heroServes) heroServes.textContent = servings;
+
+    const note = servings === BASE ? 'Base recipe'
+      : servings < BASE ? `Scaled down (÷${(BASE/servings).toFixed(1).replace('.0','')})`
+      : `Scaled up (×${(servings/BASE).toFixed(1).replace('.0','')})`;
+    document.getElementById('scaler-note').textContent = note;
+
+    document.getElementById('btn-minus').disabled = servings <= 1;
+    document.getElementById('btn-plus').disabled  = servings >= 20;
+
+    document.querySelectorAll('.qty').forEach(el => {
+      el.classList.add('changed');
+      setTimeout(() => el.classList.remove('changed'), 600);
+    });
+  }
+
+  document.getElementById('btn-minus').addEventListener('click', () => {
+    if (servings > 1)  { servings--; updateAll(); }
+  });
+  document.getElementById('btn-plus').addEventListener('click', () => {
+    if (servings < 20) { servings++; updateAll(); }
+  });
+
+  updateAll();
+</script>
+</body>
+</html>
