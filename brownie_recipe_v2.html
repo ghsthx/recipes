@@ -1,74 +1,168 @@
 <style>
-  :root { --accent: #5C3317; --accent-light: #8B4513; --gold: #C9A84C; --gold-light: #E2C97E; --sour-cream: #FAFAF0; }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: Georgia, 'Times New Roman', serif; background: var(--color-background-primary, #fff); color: var(--color-text-primary, #1a1a1a); padding: 0 0 2rem; }
-  .hero { background: var(--accent); color: #fff; padding: 2rem 2rem 1.5rem; border-radius: 0 0 12px 12px; margin-bottom: 1.5rem; }
-  .hero-tag { font-family: Arial, sans-serif; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--gold-light); margin-bottom: 0.4rem; }
-  .hero-title { font-size: 2rem; font-weight: normal; letter-spacing: 0.02em; margin-bottom: 0.75rem; }
-  .hero-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; font-family: Arial, sans-serif; font-size: 0.78rem; color: rgba(255,255,255,0.75); border-top: 1px solid rgba(255,255,255,0.2); padding-top: 0.75rem; }
-  .meta-item { display: flex; flex-direction: column; gap: 2px; }
-  .meta-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold-light); }
-  .meta-value { font-size: 0.95rem; color: #fff; font-weight: 500; }
-  .section { padding: 0 2rem; margin-bottom: 1.5rem; }
-  .section-title { font-family: Arial, sans-serif; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent); font-weight: 700; margin-bottom: 0.75rem; padding-bottom: 0.4rem; border-bottom: 2px solid var(--gold-light); }
-  .scaler-bar { display: flex; align-items: center; gap: 20px; background: var(--sour-cream, #FAFAF0); border: 1px solid var(--gold-light); border-left: 4px solid var(--accent); border-radius: 0; padding: 14px 20px; margin-bottom: 20px; flex-wrap: wrap; }
-  .scaler-label { font-family: Arial, sans-serif; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--accent); font-weight: 700; flex: 1; min-width: 120px; }
-  .scaler-controls { display: flex; align-items: center; border: 1px solid var(--gold); overflow: hidden; }
-  .scaler-btn { background: var(--accent); color: #fff; border: none; width: 38px; height: 38px; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s; }
-  .scaler-btn:hover { background: var(--accent-light); }
-  .scaler-btn:disabled { background: #bbb; cursor: not-allowed; }
-  .scaler-count { font-size: 1.15rem; font-weight: 700; width: 48px; text-align: center; background: var(--color-background-primary, #fff); height: 38px; display: flex; align-items: center; justify-content: center; color: var(--color-text-primary, #111); font-family: Arial, sans-serif; border-left: 1px solid var(--gold); border-right: 1px solid var(--gold); }
-  .scaler-note { font-style: italic; font-size: 0.8rem; color: var(--color-text-secondary, #666); font-family: Arial, sans-serif; }
-  .ingredient-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-  .ingredient-list li { font-size: 0.95rem; display: flex; align-items: baseline; gap: 4px; padding-bottom: 8px; border-bottom: 0.5px solid var(--color-border-tertiary, rgba(0,0,0,0.1)); line-height: 1.4; }
-  .qty { font-weight: 700; color: var(--accent); font-family: Arial, sans-serif; transition: color 0.3s; white-space: nowrap; }
-  .qty.changed { color: #3D6B35; }
-  .steps-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
-  .step { display: flex; gap: 1rem; align-items: flex-start; }
-  .step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #fff; font-family: Arial, sans-serif; font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
-  .step-text { font-size: 0.95rem; line-height: 1.6; }
-  .tip-box { background: var(--sour-cream, #FAFAF0); border-left: 4px solid var(--gold); border-radius: 0; padding: 1rem 1.25rem; font-size: 0.88rem; line-height: 1.6; color: var(--color-text-secondary, #555); font-style: italic; }
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --chocolate: #3B1A08;
+  --cocoa: #6B3520;
+  --caramel: #C47B2B;
+  --caramel-light: #E8A94A;
+  --parchment: #FBF4E8;
+  --parchment-dark: #F0E4CC;
+  --cream: #FFFCF5;
+  --muted: #7A5C3A;
+  --text: #2A1505;
+}
+
+body { font-family: 'DM Sans', sans-serif; background: var(--parchment); color: var(--text); }
+
+.hero { background: var(--chocolate); overflow: hidden; }
+.hero-top { display: grid; grid-template-columns: 1fr auto; align-items: stretch; }
+.hero-left { padding: 48px 40px 40px; }
+.hero-right {
+  background: var(--caramel);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 0 36px; min-width: 150px; gap: 2px;
+}
+.hero-right-temp { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 900; color: var(--chocolate); line-height: 1; }
+.hero-right-unit { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--chocolate); opacity: 0.7; margin-top: 4px; }
+.hero-right-label { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--chocolate); opacity: 0.55; margin-top: 12px; border-top: 1px solid rgba(60,26,8,0.25); padding-top: 10px; text-align: center; }
+.eyebrow { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--caramel-light); margin-bottom: 16px; opacity: 0.85; }
+.hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.6rem, 6vw, 4.2rem); font-weight: 900; line-height: 0.95; color: var(--cream); margin-bottom: 16px; }
+.hero h1 em { font-style: italic; color: var(--caramel-light); display: block; }
+.hero-desc { font-size: 0.92rem; color: rgba(255,252,245,0.6); max-width: 420px; line-height: 1.65; font-weight: 300; margin-bottom: 32px; }
+.hero-bottom { border-top: 1px solid rgba(255,255,255,0.07); display: flex; gap: 0; }
+.meta-pill { flex: 1; padding: 16px 24px; border-right: 1px solid rgba(255,255,255,0.07); display: flex; flex-direction: column; gap: 4px; }
+.meta-pill:last-child { border-right: none; }
+.meta-pill-label { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--caramel-light); opacity: 0.6; }
+.meta-pill-value { font-size: 0.9rem; font-weight: 500; color: var(--cream); }
+
+.content { max-width: 680px; margin: 0 auto; padding: 48px 40px 80px; }
+
+.section-title {
+  font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: var(--chocolate);
+  margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--parchment-dark);
+  display: flex; align-items: center; gap: 10px;
+}
+.section-title::before { content: ''; width: 8px; height: 8px; background: var(--caramel); border-radius: 50%; flex-shrink: 0; }
+
+.scaler-bar {
+  display: flex; align-items: center; gap: 16px;
+  background: var(--cream); border: 1px solid var(--caramel-light); border-left: 4px solid var(--cocoa);
+  padding: 12px 18px; margin-bottom: 24px; flex-wrap: wrap;
+}
+.scaler-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--cocoa); font-weight: 500; flex: 1; min-width: 100px; }
+.scaler-controls { display: flex; align-items: center; border: 1px solid var(--caramel); }
+.scaler-btn { background: var(--chocolate); color: var(--cream); border: none; width: 36px; height: 36px; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s; }
+.scaler-btn:hover { background: var(--cocoa); }
+.scaler-btn:disabled { background: #bbb; cursor: not-allowed; }
+.scaler-count { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; width: 46px; height: 36px; text-align: center; background: white; display: flex; align-items: center; justify-content: center; color: var(--chocolate); border-left: 1px solid var(--caramel); border-right: 1px solid var(--caramel); }
+.scaler-note { font-style: italic; font-size: 0.76rem; color: var(--muted); }
+
+.ingredient-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 9px 32px; margin-bottom: 48px; }
+.ingredient-list li { font-size: 0.91rem; line-height: 1.45; display: flex; align-items: baseline; gap: 6px; color: var(--text); }
+.ingredient-list li::before { content: '—'; color: var(--caramel); font-size: 0.75rem; flex-shrink: 0; }
+.qty { font-family: 'DM Mono', monospace; font-size: 0.83rem; font-weight: 500; color: var(--chocolate); transition: color 0.3s; }
+.qty.changed { color: #3D6B35; }
+
+.steps-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+.step { display: grid; grid-template-columns: 42px 1fr; gap: 0 20px; align-items: start; padding-bottom: 28px; position: relative; }
+.step:not(:last-child)::after { content: ''; position: absolute; left: 20px; top: 42px; bottom: 0; width: 1px; background: var(--parchment-dark); }
+.step-num { width: 42px; height: 42px; background: var(--chocolate); color: var(--caramel-light); font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border-radius: 2px; position: relative; z-index: 1; }
+.step-body { padding-top: 8px; }
+.step-title { font-family: 'DM Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--caramel); margin-bottom: 6px; }
+.step-text { font-size: 0.91rem; line-height: 1.7; color: var(--text); }
+.step-text strong { color: var(--chocolate); font-weight: 600; }
+
+.tips-box { background: var(--chocolate); color: var(--cream); padding: 28px 32px; margin-top: 16px; position: relative; overflow: hidden; }
+.tips-box::before { content: '✦'; font-size: 9rem; color: rgba(196,123,43,0.08); position: absolute; top: -24px; right: 24px; line-height: 1; }
+.tips-box h3 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--caramel-light); margin-bottom: 14px; }
+.tips-box ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.tips-box li { font-size: 0.87rem; line-height: 1.6; color: rgba(255,252,245,0.8); display: flex; gap: 10px; }
+.tips-box li::before { content: '✦'; color: var(--caramel); flex-shrink: 0; font-size: 0.65rem; margin-top: 4px; }
 </style>
 
-<div class="hero">
-  <div class="hero-tag">Classic Recipe</div>
-  <h1 class="hero-title">Classic Fudgy Brownies</h1>
-  <div class="hero-meta">
-    <div class="meta-item"><span class="meta-label">Oven</span><span class="meta-value">350 °F</span></div>
-    <div class="meta-item"><span class="meta-label">Bake</span><span class="meta-value">25 min</span></div>
-    <div class="meta-item"><span class="meta-label">Pan</span><span class="meta-value">8-inch square</span></div>
-    <div class="meta-item"><span class="meta-label">Makes</span><span class="meta-value">~9 brownies</span></div>
-  </div>
-</div>
-
-<div class="section">
-  <div class="section-title">Ingredients</div>
-  <div class="scaler-bar">
-    <span class="scaler-label">Adjust batches</span>
-    <div class="scaler-controls">
-      <button class="scaler-btn" id="btn-minus" aria-label="Fewer batches">−</button>
-      <span class="scaler-count" id="scaler-count">1</span>
-      <button class="scaler-btn" id="btn-plus" aria-label="More batches">+</button>
+<header class="hero">
+  <div class="hero-top">
+    <div class="hero-left">
+      <div class="eyebrow">Dessert · Classic Bake</div>
+      <h1>Classic<br>Fudgy <em>Brownies</em></h1>
+      <p class="hero-desc">Dense, intensely chocolatey, barely set in the middle. Melted semisweet chocolate folded with butter, eggs, and sugar — no shortcuts, no frills.</p>
     </div>
-    <span class="scaler-note" id="scaler-note">1 pan · ~9 brownies</span>
+    <div class="hero-right">
+      <div class="hero-right-temp">350</div>
+      <div class="hero-right-unit">°F oven</div>
+      <div class="hero-right-label">Bake 25 min</div>
+    </div>
   </div>
-  <ul class="ingredient-list" id="main-list"></ul>
-</div>
+  <div class="hero-bottom">
+    <div class="meta-pill"><span class="meta-pill-label">Pan</span><span class="meta-pill-value">8-inch square</span></div>
+    <div class="meta-pill"><span class="meta-pill-label">Makes</span><span class="meta-pill-value">~9 brownies</span></div>
+    <div class="meta-pill"><span class="meta-pill-label">Prep</span><span class="meta-pill-value">10 min</span></div>
+    <div class="meta-pill"><span class="meta-pill-label">Total</span><span class="meta-pill-value">~35 min</span></div>
+  </div>
+</header>
 
-<div class="section">
-  <div class="section-title">Method</div>
-  <ol class="steps-list">
-    <li class="step"><span class="step-num">1</span><span class="step-text">Preheat oven to 350 °F. Butter an 8-inch square baking pan.</span></li>
-    <li class="step"><span class="step-num">2</span><span class="step-text">Melt the chocolate and butter together in a saucepan over low heat, stirring until smooth. Remove from heat and let cool slightly.</span></li>
-    <li class="step"><span class="step-num">3</span><span class="step-text">In a bowl, beat the eggs with the sugar until the sugar is mostly dissolved, about 2 minutes.</span></li>
-    <li class="step"><span class="step-num">4</span><span class="step-text">Stir the chocolate mixture into the egg mixture. Then fold in the flour, salt, vanilla, and nuts until just combined — don't overmix.</span></li>
-    <li class="step"><span class="step-num">5</span><span class="step-text">Pour the batter into the prepared pan and spread evenly. Bake for 25 minutes, until a toothpick comes out with moist crumbs. Let cool in the pan before cutting.</span></li>
-  </ol>
-</div>
+<main class="content">
+  <section>
+    <h2 class="section-title">Ingredients</h2>
+    <div class="scaler-bar">
+      <span class="scaler-label">Adjust batches</span>
+      <div class="scaler-controls">
+        <button class="scaler-btn" id="btn-minus" aria-label="Fewer batches">−</button>
+        <span class="scaler-count" id="scaler-count">1</span>
+        <button class="scaler-btn" id="btn-plus" aria-label="More batches">+</button>
+      </div>
+      <span class="scaler-note" id="scaler-note">1 pan · ~9 brownies</span>
+    </div>
+    <ul class="ingredient-list" id="main-list"></ul>
+  </section>
 
-<div class="section">
-  <div class="tip-box">For extra-fudgy brownies, pull them out on the earlier side — the center should look just barely set. They firm up as they cool.</div>
-</div>
+  <section>
+    <h2 class="section-title">Method</h2>
+    <ol class="steps-list">
+      <li class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Prep</div>
+          <p class="step-text">Preheat oven to <strong>350 °F</strong>. Butter an 8-inch square baking pan.</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Melt</div>
+          <p class="step-text">Melt the <strong>chocolate and butter</strong> together in a saucepan over low heat, stirring until smooth. Remove from heat and let cool slightly.</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Mix</div>
+          <p class="step-text">Beat the <strong>eggs with the sugar</strong> until the sugar is mostly dissolved. Stir in the chocolate mixture, then fold in the flour, salt, vanilla, and nuts until just combined — don't overmix.</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Bake</div>
+          <p class="step-text">Pour into the prepared pan and spread evenly. Bake <strong>25 minutes</strong>, until a toothpick comes out with moist crumbs. Let cool completely before cutting.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <div class="tips-box">
+    <h3>Notes</h3>
+    <ul>
+      <li>Pull them out when the center still looks barely set — they firm up dramatically as they cool.</li>
+      <li>The nuts are optional, but they add texture that keeps each bite interesting.</li>
+      <li>Let them cool fully before cutting or they'll crumble. An hour at room temperature does it.</li>
+    </ul>
+  </div>
+</main>
 
 <script>
   const BASE = 1;
@@ -76,7 +170,7 @@
 
   const ingredients = [
     { qty: 0.25, unit: 'lb',   label: 'semisweet chocolate' },
-    { qty: 8,    unit: 'tbsp', label: 'unsalted butter, plus more for the pan' },
+    { qty: 8,    unit: 'tbsp', label: 'unsalted butter, plus more for pan' },
     { qty: 2,    unit: '',     label: 'large eggs', count: true },
     { qty: 1,    unit: 'cup',  label: 'sugar' },
     { qty: 0.5,  unit: 'cup',  label: 'all-purpose flour, sifted' },
@@ -86,13 +180,11 @@
   ];
 
   const fracMap = [[0.125,'⅛'],[0.25,'¼'],[0.333,'⅓'],[0.5,'½'],[0.667,'⅔'],[0.75,'¾'],[0.875,'⅞']];
-
   function nearFrac(val) {
     let best = '', minD = 0.07;
     for (const [v, s] of fracMap) { if (Math.abs(val - v) < minD) { minD = Math.abs(val - v); best = s; } }
     return best;
   }
-
   function formatQty(raw) {
     if (raw === null) return null;
     const n = Math.round(raw * 8) / 8;
@@ -111,14 +203,10 @@
       const unitStr = ing.unit ? ' ' + ing.unit : '';
       return `<li><span class="qty">${qtyStr}${unitStr}</span> ${ing.label}</li>`;
     }).join('');
-
     document.getElementById('scaler-count').textContent = batches;
-    const pans = batches === 1 ? '1 pan' : `${batches} pans`;
-    const brownies = batches * 9;
-    document.getElementById('scaler-note').textContent = `${pans} · ~${brownies} brownies`;
+    document.getElementById('scaler-note').textContent = `${batches === 1 ? '1 pan' : batches + ' pans'} · ~${batches * 9} brownies`;
     document.getElementById('btn-minus').disabled = batches <= 1;
     document.getElementById('btn-plus').disabled  = batches >= 10;
-
     document.querySelectorAll('.qty').forEach(el => {
       el.classList.add('changed');
       setTimeout(() => el.classList.remove('changed'), 600);
@@ -127,6 +215,5 @@
 
   document.getElementById('btn-minus').addEventListener('click', () => { if (batches > 1)  { batches--; updateAll(); } });
   document.getElementById('btn-plus').addEventListener('click',  () => { if (batches < 10) { batches++; updateAll(); } });
-
   updateAll();
 </script>
