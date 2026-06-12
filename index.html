@@ -36,6 +36,27 @@
       z-index: 100;
     }
 
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .home-link {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      text-decoration: none;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+
+    .home-link:hover {
+      color: var(--yellow);
+    }
+
     .logo {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 900;
@@ -272,7 +293,10 @@
 <body>
 
   <header>
-    <div class="logo">The Smiths' Kitchen</div>
+    <div class="header-left">
+      <a class="home-link" href="#">← Home</a>
+      <div class="logo">The Smiths' Kitchen</div>
+    </div>
     <div class="header-tag">Recipe Collection</div>
   </header>
 
