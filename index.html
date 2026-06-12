@@ -332,6 +332,32 @@
         grid-row: auto;
         margin-top: 8px;
       }
+    @media (max-width: 600px) {
+      header {
+        height: auto;
+        min-height: 64px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        row-gap: 10px;
+        padding: 14px 20px;
+      }
+  .logo {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    font-size: 1.3rem;
+  }
+
+  .home-link {
+    grid-row: 2;
+  }
+
+  .header-tag {
+    grid-row: 2;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+  }
+}
+      
     }
   </style>
 </head>
