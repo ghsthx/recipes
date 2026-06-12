@@ -4,240 +4,270 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Recipe Kitchen</title>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --cream: #FAF7F0;
-      --yellow: #F5C800;
-      --black: #111111;
-      --warm-gray: #8A8070;
-      --card-bg: #FFFFFF;
+      --white: #FFFFFF;
+      --cream: #FAF9F6;
+      --ink: #1A1A1A;
+      --ink-soft: #5A5A52;
+      --green: #0D6440;
+      --green-light: #1A8A5C;
+      --gray: #9A968C;
+      --line: #E8E6DF;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background-color: var(--cream);
-      font-family: 'Lora', Georgia, serif;
-      color: var(--black);
+      background-color: var(--white);
+      font-family: 'Lora', serif;
+      color: var(--ink);
       min-height: 100vh;
     }
 
     /* ── HEADER ── */
     header {
-      background: var(--black);
+      background: var(--white);
+      border-bottom: 1px solid var(--line);
       padding: 0 40px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 72px;
+      height: 76px;
       position: sticky;
       top: 0;
       z-index: 100;
     }
 
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
-
     .home-link {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--warm-gray);
+      font-family: 'Lora', serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--ink);
       text-decoration: none;
       transition: color 0.2s;
       white-space: nowrap;
     }
 
     .home-link:hover {
-      color: var(--yellow);
+      color: var(--green);
     }
 
     .logo {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900;
+      font-family: 'Libre Baskerville', serif;
+      font-weight: 600;
       font-size: 1.6rem;
-      color: var(--yellow);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
+      color: var(--ink);
+      letter-spacing: 0.01em;
     }
 
     .header-tag {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.8rem;
-      letter-spacing: 0.2em;
+      font-family: 'Lora', serif;
+      font-weight: 600;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: var(--warm-gray);
+      color: var(--gray);
+      white-space: nowrap;
     }
 
     /* ── HERO ── */
     .hero {
-      padding: 80px 40px 60px;
-      max-width: 900px;
-    }
-
-    .hero-eyebrow {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--warm-gray);
-      margin-bottom: 16px;
+      background: var(--green);
+      color: var(--cream);
+      padding: 96px 40px 84px;
+      text-align: center;
     }
 
     .hero h1 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900;
-      font-size: clamp(3.5rem, 8vw, 7rem);
-      line-height: 0.92;
-      text-transform: uppercase;
+      font-family: 'Libre Baskerville', serif;
+      font-weight: 600;
+      font-size: clamp(2.6rem, 7vw, 5.2rem);
+      line-height: 1.08;
       letter-spacing: -0.01em;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
 
     .hero h1 em {
-      font-style: normal;
-      color: var(--warm-gray);
+      font-style: italic;
       font-weight: 400;
+      color: rgba(250, 249, 246, 0.78);
     }
 
     .hero p {
-      font-size: 1.1rem;
-      color: var(--warm-gray);
-      font-style: italic;
-      max-width: 440px;
-      line-height: 1.6;
+      font-size: 1.05rem;
+      color: rgba(250, 249, 246, 0.78);
+      max-width: 460px;
+      margin: 0 auto 36px;
+      line-height: 1.65;
     }
 
-    /* ── DIVIDER ── */
-    .divider {
-      height: 4px;
-      background: var(--yellow);
-      margin: 0 40px 60px;
+    .search-bar {
+      max-width: 460px;
+      margin: 0 auto;
+      position: relative;
     }
 
-    /* ── RECIPE GRID ── */
+    .search-bar svg {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      stroke: var(--gray);
+      pointer-events: none;
+    }
+
+    .search-bar input {
+      width: 100%;
+      border: none;
+      border-radius: 3px;
+      background: var(--white);
+      font-family: 'Lora', serif;
+      font-size: 0.95rem;
+      color: var(--ink);
+      padding: 16px 18px 16px 50px;
+    }
+
+    .search-bar input::placeholder { color: var(--gray); }
+    .search-bar input:focus { outline: 2px solid var(--green-light); }
+
+    /* ── SECTION LABEL ── */
+    .section-label-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 56px 40px 16px;
+    }
+
     .section-label {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Lora', serif;
       font-weight: 700;
-      font-size: 0.7rem;
-      letter-spacing: 0.35em;
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: var(--warm-gray);
-      padding: 0 40px;
-      margin-bottom: 28px;
+      color: var(--ink);
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 2px;
+    .section-count {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--gray);
+    }
+
+    .section-divider {
+      height: 1px;
+      background: var(--line);
+      margin: 0 40px;
+    }
+
+    /* ── RECIPE LIST ── */
+    .recipe-list {
       padding: 0 40px;
       margin-bottom: 80px;
     }
 
-    .card {
-      background: var(--card-bg);
-      text-decoration: none;
-      color: inherit;
+    .recipe-row {
       display: block;
-      padding: 36px 32px;
-      position: relative;
+      text-decoration: none;
+      color: var(--ink);
+      border-bottom: 1px solid var(--line);
       overflow: hidden;
-      transition: background 0.2s;
-      border-bottom: 2px solid transparent;
     }
 
-    .card::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0%;
-      height: 3px;
-      background: var(--yellow);
-      transition: width 0.3s ease;
+    .row-inner {
+      padding: 34px 0;
+      transition: transform 0.25s ease;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 4px 24px;
+      align-items: start;
     }
 
-    .card:hover {
-      background: var(--black);
-      color: var(--cream);
-    }
-
-    .card:hover::after {
-      width: 100%;
-    }
-
-    .card:hover .card-tag,
-    .card:hover .card-meta {
-      color: var(--warm-gray);
-    }
-
-    .card:hover .card-arrow {
-      background: var(--yellow);
-      color: var(--black);
+    .recipe-row:hover .row-inner {
+      transform: translateX(10px);
     }
 
     .card-tag {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
+      grid-column: 1;
+      font-family: 'Lora', serif;
+      font-weight: 700;
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: var(--warm-gray);
-      margin-bottom: 16px;
+      color: var(--green);
+      margin-bottom: 10px;
       transition: color 0.2s;
     }
 
     .card-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900;
-      font-size: 2rem;
-      text-transform: uppercase;
-      line-height: 1;
-      letter-spacing: 0.01em;
+      grid-column: 1;
+      font-family: 'Libre Baskerville', serif;
+      font-weight: 600;
+      font-size: 1.9rem;
+      line-height: 1.2;
       margin-bottom: 12px;
-    }
-
-    .card-desc {
-      font-size: 0.88rem;
-      line-height: 1.6;
-      color: inherit;
-      opacity: 0.7;
-      margin-bottom: 28px;
-      font-style: italic;
-    }
-
-    .card-meta {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--warm-gray);
-      display: flex;
-      gap: 20px;
-      margin-bottom: 24px;
       transition: color 0.2s;
     }
 
+    .recipe-row:hover .card-title {
+      color: var(--green);
+    }
+
+    .card-desc {
+      grid-column: 1;
+      font-size: 0.97rem;
+      line-height: 1.65;
+      color: var(--ink-soft);
+      max-width: 620px;
+      margin-bottom: 16px;
+    }
+
+    .card-meta {
+      grid-column: 1;
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.02em;
+      color: var(--gray);
+    }
+
+    .card-meta span:not(:last-child)::after {
+      content: '·';
+      margin-left: 18px;
+      color: var(--line);
+    }
+
     .card-arrow {
+      grid-column: 2;
+      grid-row: 1 / span 4;
+      align-self: center;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 40px;
-      height: 40px;
-      background: var(--black);
-      color: var(--yellow);
-      font-size: 1.2rem;
-      transition: background 0.2s, color 0.2s;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      font-size: 1.1rem;
+      color: var(--gray);
+      transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.25s;
+    }
+
+    .recipe-row:hover .card-arrow {
+      background: var(--green);
+      color: var(--cream);
+      border-color: var(--green);
+      transform: translateX(4px);
     }
 
     /* ── FOOTER ── */
     footer {
-      background: var(--yellow);
+      border-top: 1px solid var(--line);
       padding: 32px 40px;
       display: flex;
       align-items: center;
@@ -247,154 +277,205 @@
     }
 
     .footer-logo {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900;
-      font-size: 1.2rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--black);
+      font-family: 'Libre Baskerville', serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--ink);
     }
 
     .footer-note {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Lora', serif;
       font-size: 0.7rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--black);
-      opacity: 0.6;
+      color: var(--gray);
     }
+
+    .footer-link {
+      font-family: 'Lora', serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    .footer-link:hover { color: var(--green-light); }
 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
+      from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
     .hero { animation: fadeUp 0.6s ease both; }
-    .divider { animation: fadeUp 0.6s 0.1s ease both; }
-    .section-label { animation: fadeUp 0.6s 0.15s ease both; }
-    .card:nth-child(1) { animation: fadeUp 0.5s 0.2s ease both; }
-    .card:nth-child(2) { animation: fadeUp 0.5s 0.3s ease both; }
-    .card:nth-child(3) { animation: fadeUp 0.5s 0.4s ease both; }
-    .card:nth-child(4) { animation: fadeUp 0.5s 0.4s ease both; }
-    .card:nth-child(5) { animation: fadeUp 0.5s 0.4s ease both; }
-    .card:nth-child(6) { animation: fadeUp 0.5s 0.4s ease both; }
+    .section-label-row, .section-divider { animation: fadeUp 0.6s 0.1s ease both; }
+    .recipe-row:nth-of-type(1) { animation: fadeUp 0.5s 0.15s ease both; }
+    .recipe-row:nth-of-type(2) { animation: fadeUp 0.5s 0.2s ease both; }
+    .recipe-row:nth-of-type(3) { animation: fadeUp 0.5s 0.25s ease both; }
+    .recipe-row:nth-of-type(4) { animation: fadeUp 0.5s 0.3s ease both; }
+    .recipe-row:nth-of-type(5) { animation: fadeUp 0.5s 0.35s ease both; }
+    .recipe-row:nth-of-type(6) { animation: fadeUp 0.5s 0.4s ease both; }
+    .recipe-row:nth-of-type(7) { animation: fadeUp 0.5s 0.45s ease both; }
+
+    /* ── HIDDEN (search filter) ── */
+    .recipe-row.is-hidden { display: none; }
 
     @media (max-width: 600px) {
-      header, .hero, .divider, .section-label, .grid, footer {
+      header, .hero, .section-label-row, .section-divider, .recipe-list, footer {
         padding-left: 20px;
         padding-right: 20px;
       }
-      .hero { padding-top: 48px; }
-      .grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 56px; padding-bottom: 56px; }
+      .row-inner {
+        grid-template-columns: 1fr;
+      }
+      .card-arrow {
+        grid-column: 1;
+        grid-row: auto;
+        margin-top: 8px;
+      }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <div class="header-left">
-      <a class="home-link" href="https://npsmithmd.com">← Home</a>
-      <div class="logo">The Smiths' Kitchen</div>
-    </div>
+    <a class="home-link" href="https://npsmithmd.com">← Home</a>
+    <div class="logo">The Smiths' Kitchen</div>
     <div class="header-tag">Recipe Collection</div>
   </header>
 
   <section class="hero">
-    <p class="hero-eyebrow">Home Cooking · Simplified </p>
     <h1>Good food,<br><em>every time.</em></h1>
-    <p>A small collection of recipes worth making again and again. Tap any dish to open the full recipe with an adjustable serving scaler.</p>
+    <p>A small collection of recipes worth making again and again. Open any dish for the full recipe with an adjustable serving scaler.</p>
+    <div class="search-bar">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="7"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="text" id="recipe-search" placeholder="Search recipes...">
+    </div>
   </section>
 
-  <div class="divider"></div>
-
-  <p class="section-label">All Recipes — 6 dishes</p>
-
-  <div class="grid">
-
-    <a class="card" href="cava_harissa_avocado_bowl.html">
-      <div class="card-tag">Bowl · Mediterranean</div>
-      <div class="card-title">CAVA Harissa Avocado Bowl</div>
-      <div class="card-desc">Harissa honey chicken, avocado, Crazy Feta, hummus, fire-roasted corn, and greens — a CAVA favorite made at home.</div>
-      <div class="card-meta">
-        <span>3 Servings</span>
-        <span>~45 min</span>
-      </div>
-      <div class="card-arrow">→</div>
-    </a>
-
-    <a class="card" href="classic-red-borscht.html">
-      <div class="card-tag">Soup · Eastern European</div>
-      <div class="card-title">Classic Red Borscht</div>
-      <div class="card-desc">A deeply flavorful beet soup with tender vegetables, a splash of vinegar, and a generous dollop of sour cream.</div>
-      <div class="card-meta">
-        <span>3 Servings</span>
-        <span>~90 min</span>
-      </div>
-      <div class="card-arrow">→</div>
-    </a>
-
-    <a class="card" href="green-borscht.html">
-      <div class="card-tag">Soup · Eastern European</div>
-      <div class="card-title">Green Borscht</div>
-      <div class="card-desc">A bright, spring sorrel soup with potato, egg, and a light broth — lighter than its red cousin but just as satisfying.</div>
-      <div class="card-meta">
-        <span>3 Servings</span>
-        <span>~45 min</span>
-      </div>
-      <div class="card-arrow">→</div>
-    </a>
-
-    <a class="card" href="lizs-pecan-pie.html">
-      <div class="card-tag">Dessert · El Paso, Texas</div>
-      <div class="card-title">Liz's Pecan Pie</div>
-      <div class="card-desc">A classic Southern pecan pie from El Paso — rich custard filling, buttery crust, and always a few extra pecans on top.</div>
-      <div class="card-meta">
-        <span>8 Slices</span>
-        <span>~60 min</span>
-      </div>
-      <div class="card-arrow">→</div>
-    </a>
-
-    <a class="card" href="geppettos-pizza-dough.html">
-      <div class="card-tag">Dough · Providence, RI</div>
-      <div class="card-title">Geppetto's Pizza Dough</div>
-      <div class="card-desc">The grilled pizza dough recipe from the Providence waterfront. No rise needed — mix, portion, and grill.</div>
-      <div class="card-meta">
-        <span>4 Pizzas</span>
-        <span>~20 min</span>
-      </div>
-      <div class="card-arrow">→</div>
-    </a>
-
-    <a class="card" href="mac-and-cheese.html">
-  <div class="card-tag">Baked Pasta · Comfort Classic</div>
-  <div class="card-title">Baked Mac & Cheese</div>
-  <div class="card-desc">A proper béchamel-based mac with sharp cheddar, a whisper of mustard powder, and a golden panko crust — adapted from Alton Brown's Good Eats.</div>
-  <div class="card-meta">
-    <span>3 Servings</span>
-    <span>~50 min</span>
+  <div class="section-label-row">
+    <span class="section-label">All Recipes</span>
+    <span class="section-count">7 dishes</span>
   </div>
-  <div class="card-arrow">→</div>
-</a>
+  <div class="section-divider"></div>
 
-    <a class="card" href="brownies.html">
-  <div class="card-tag">Dessert · Classic Bake</div>
-  <div class="card-title">Classic Fudgy Brownies</div>
-  <div class="card-desc">Rich semisweet chocolate and butter melted together, folded with eggs, sugar, and chopped nuts — simple, dense, and deeply fudgy.</div>
-  <div class="card-meta">
-    <span>~9 Brownies</span>
-    <span>~35 min</span>
-  </div>
-  <div class="card-arrow">→</div>
-</a>
-    
+  <div class="recipe-list" id="recipe-list">
+
+    <a class="recipe-row" href="cava_harissa_avocado_bowl.html">
+      <div class="row-inner">
+        <div class="card-tag">Bowl · Mediterranean</div>
+        <div class="card-title">CAVA Harissa Avocado Bowl</div>
+        <div class="card-desc">Harissa honey chicken, avocado, Crazy Feta, hummus, fire-roasted corn, and greens — a CAVA favorite made at home.</div>
+        <div class="card-meta">
+          <span>3 Servings</span>
+          <span>~45 min</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </a>
+
+    <a class="recipe-row" href="classic-red-borscht.html">
+      <div class="row-inner">
+        <div class="card-tag">Soup · Eastern European</div>
+        <div class="card-title">Classic Red Borscht</div>
+        <div class="card-desc">A deeply flavorful beet soup with tender vegetables, a splash of vinegar, and a generous dollop of sour cream.</div>
+        <div class="card-meta">
+          <span>3 Servings</span>
+          <span>~90 min</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </a>
+
+    <a class="recipe-row" href="green-borscht.html">
+      <div class="row-inner">
+        <div class="card-tag">Soup · Eastern European</div>
+        <div class="card-title">Green Borscht</div>
+        <div class="card-desc">A bright, spring sorrel soup with potato, egg, and a light broth — lighter than its red cousin but just as satisfying.</div>
+        <div class="card-meta">
+          <span>3 Servings</span>
+          <span>~45 min</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </a>
+
+    <a class="recipe-row" href="lizs-pecan-pie.html">
+      <div class="row-inner">
+        <div class="card-tag">Dessert · El Paso, Texas</div>
+        <div class="card-title">Liz's Pecan Pie</div>
+        <div class="card-desc">A classic Southern pecan pie from El Paso — rich custard filling, buttery crust, and always a few extra pecans on top.</div>
+        <div class="card-meta">
+          <span>8 Slices</span>
+          <span>~60 min</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </a>
+
+    <a class="recipe-row" href="geppettos-pizza-dough.html">
+      <div class="row-inner">
+        <div class="card-tag">Dough · Providence, RI</div>
+        <div class="card-title">Geppetto's Pizza Dough</div>
+        <div class="card-desc">The grilled pizza dough recipe from the Providence waterfront. No rise needed — mix, portion, and grill.</div>
+        <div class="card-meta">
+          <span>4 Pizzas</span>
+          <span>~20 min</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </a>
+
+    <a class="recipe-row" href="mac-and-cheese.html">
+      <div class="row-inner">
+        <div class="card-tag">Baked Pasta · Comfort Classic</div>
+        <div class="card-title">Baked Mac &amp; Cheese</div>
+        <div class="card-desc">A proper béchamel-based mac with sharp cheddar, a whisper of mustard powder, and a golden panko crust — adapted from Alton Brown's Good Eats.</div>
+        <div class="card-meta">
+          <span>3 Servings</span>
+          <span>~50 min</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </a>
+
+    <a class="recipe-row" href="brownies.html">
+      <div class="row-inner">
+        <div class="card-tag">Dessert · Classic Bake</div>
+        <div class="card-title">Classic Fudgy Brownies</div>
+        <div class="card-desc">Rich semisweet chocolate and butter melted together, folded with eggs, sugar, and chopped nuts — simple, dense, and deeply fudgy.</div>
+        <div class="card-meta">
+          <span>~9 Brownies</span>
+          <span>~35 min</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </a>
+
   </div>
 
   <footer>
-    <div class="footer-logo">My Kitchen</div>
+    <div class="footer-logo">The Smiths' Kitchen</div>
     <div class="footer-note">Recipes scaled for 2 adults + 1 toddler</div>
+    <a class="footer-link" href="https://npsmithmd.com">The SC Smiths →</a>
   </footer>
+
+  <script>
+    const searchInput = document.getElementById('recipe-search');
+    const rows = document.querySelectorAll('.recipe-row');
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.trim().toLowerCase();
+      rows.forEach(row => {
+        const matches = row.textContent.toLowerCase().includes(query);
+        row.classList.toggle('is-hidden', !matches);
+      });
+    });
+  </script>
 
 </body>
 </html>
