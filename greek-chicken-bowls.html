@@ -449,7 +449,7 @@
   <div class="wrap">
     <div class="section-heading">
       <h2>Ingredients</h2>
-      <span class="count mono">6 groups</span>
+      <span class="count mono">7 groups</span>
     </div>
 
     <div class="scaler-bar">
@@ -484,6 +484,10 @@
         <ul class="ingredient-list" id="group-couscous-list"></ul>
       </div>
       <div class="ing-group terra">
+        <h3>Baba Ganoush</h3>
+        <ul class="ingredient-list" id="group-babaganoush-list"></ul>
+      </div>
+      <div class="ing-group">
         <h3>To Finish</h3>
         <ul class="ingredient-list" id="group-toppings-list"></ul>
       </div>
@@ -497,48 +501,58 @@
   <div class="wrap">
     <div class="section-heading">
       <h2>Method</h2>
-      <span class="count mono">8 steps</span>
+      <span class="count mono">10 steps</span>
     </div>
     <ol class="timeline">
       <li data-step="1">
-        <span class="tag">Do first — it needs to sit</span>
+        <span class="tag">Do first — 35–45 min, oven</span>
+        <h4>Roast the eggplant</h4>
+        <p>Preheat oven to 450°F. Prick the eggplant a few times with a fork and roast on a foil-lined sheet until the skin is deeply blistered and the eggplant has collapsed and feels totally soft, 35–45 minutes, turning once halfway.</p>
+      </li>
+      <li data-step="2">
+        <span class="tag">While the eggplant roasts</span>
         <h4>Quick-pickle the onions</h4>
         <p>Combine the sliced red onion, red wine vinegar, warm water, sugar, and salt in a jar. Stir until the sugar dissolves and let sit at room temperature while you cook — at least 20 minutes, longer is better.</p>
       </li>
-      <li data-step="2">
+      <li data-step="3">
         <span class="tag">15 min – overnight</span>
         <h4>Marinate the chicken</h4>
         <p>Whisk together the olive oil, lemon juice, garlic, oregano, salt, and pepper. Add the chicken and toss to coat. Marinate at least 15 minutes, or up to overnight in the fridge.</p>
       </li>
-      <li data-step="3">
+      <li data-step="4">
+        <span class="tag">10 min, once eggplant is cool</span>
+        <h4>Drain and mash the baba ganoush</h4>
+        <p>Let the roasted eggplant cool until safe to handle, then scoop the flesh into a strainer and drain 10–15 minutes, pressing gently. Transfer to a bowl and mash with the tahini, lemon juice, garlic, olive oil, salt, and cumin. Taste and adjust.</p>
+      </li>
+      <li data-step="5">
         <span class="tag">Can do anytime before serving</span>
         <h4>Whisk the vinaigrette</h4>
         <p>Whisk together the olive oil, lemon juice, oregano, honey, and salt until emulsified. Set aside — it'll only get better as it sits.</p>
       </li>
-      <li data-step="4">
+      <li data-step="6">
         <span class="tag">~20 min, oven</span>
         <h4>Roast the zucchini</h4>
         <p>Preheat oven to 425°F. Toss the zucchini with a drizzle of olive oil, salt, and pepper. Spread on a baking sheet and roast until tender and lightly browned, flipping halfway.</p>
       </li>
-      <li data-step="5">
+      <li data-step="7">
         <span class="tag">5–7 min, stovetop</span>
         <h4>Char the corn</h4>
         <p>Heat a dry skillet or grill pan over medium-high heat. Add the corn kernels and cook, stirring occasionally, until charred in spots.</p>
       </li>
-      <li data-step="6">
+      <li data-step="8">
         <span class="tag">10–12 min, stovetop</span>
         <h4>Cook the chicken</h4>
         <p>Heat a skillet over medium-high heat. Cook the marinated chicken until browned and cooked through (internal temp 165°F), about 5–6 minutes per side depending on thickness. Let rest 5 minutes, then slice.</p>
       </li>
-      <li data-step="7">
+      <li data-step="9">
         <span class="tag">5 min, off heat</span>
         <h4>Make the couscous</h4>
         <p>Bring the broth to a boil. Stir in the dry couscous, cover, remove from heat, and let sit until the liquid is absorbed. Fluff with a fork.</p>
       </li>
-      <li data-step="8">
+      <li data-step="10">
         <span class="tag">Bring it together</span>
         <h4>Assemble the bowls</h4>
-        <p>Divide couscous among bowls. Top with sliced chicken, roasted zucchini, charred corn, a scoop of baba ganoush, and a handful of pickled onions. Drizzle generously with the vinaigrette and finish with feta and parsley.</p>
+        <p>Divide couscous among bowls. Top with sliced chicken, roasted zucchini, charred corn, a scoop of your baba ganoush, and a handful of pickled onions. Drizzle generously with the vinaigrette and finish with feta and parsley.</p>
       </li>
     </ol>
   </div>
@@ -555,7 +569,7 @@
       <div class="note-card">
         <span class="note-icon mono">For the toddler</span>
         <h4>Keep it simple</h4>
-        <p>Plate a portion of plain couscous, chicken, and zucchini before the vinaigrette and pickled onions go on — the base recipe has no real heat, so no other adjustment is needed.</p>
+        <p>Plate a portion of plain couscous, chicken, and zucchini before the vinaigrette and pickled onions go on — the base recipe has no real heat, so no other adjustment is needed. Go light on the raw garlic in the baba ganoush if it seems sharp for a toddler palate.</p>
       </div>
       <div class="note-card">
         <span class="note-icon mono">Swaps</span>
@@ -615,8 +629,18 @@
     { qty: 1,    unit: 'cup', label: 'chicken or vegetable broth <em>(or water)</em>' },
   ];
 
+  const groupBabaGanoush = [
+    { qty: 1,     unit: '',    label: 'large eggplant <em>(about 1 lb)</em>', count: true },
+    { qty: 2,     unit: 'tbsp', label: 'tahini' },
+    { qty: 1,     unit: 'tbsp', label: 'lemon juice' },
+    { qty: 1,     unit: '',    label: 'small garlic clove, minced', count: true },
+    { qty: 1,     unit: 'tbsp', label: 'olive oil, plus more for serving' },
+    { qty: 0.25,  unit: 'tsp', label: 'salt' },
+    { qty: 0.125, unit: 'tsp', label: 'ground cumin', optional: true },
+    { qty: 1,     unit: 'tbsp', label: 'fresh parsley, chopped, for garnish', optional: true },
+  ];
+
   const groupToppings = [
-    { qty: 0.75,  unit: 'cup', label: 'baba ganoush <em>(homemade or store-bought)</em>' },
     { qty: 0.333, unit: 'cup', label: 'feta cheese, crumbled' },
     { qty: 2,     unit: 'tbsp', label: 'fresh parsley, chopped' },
   ];
@@ -664,6 +688,7 @@
     renderList('group-pickled-list', groupPickled);
     renderList('group-vinaigrette-list', groupVinaigrette);
     renderList('group-couscous-list', groupCouscous);
+    renderList('group-babaganoush-list', groupBabaGanoush);
     renderList('group-toppings-list', groupToppings);
 
     document.getElementById('scaler-count').textContent = servings;
