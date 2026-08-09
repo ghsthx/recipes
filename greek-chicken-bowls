@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greek Chicken Bowls with Baba Ganoush — The SC Smiths</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --sea: #2B6E8F;
+    --sea-deep: #16455C;
+    --sky: #BFE1F0;
+    --sky-pale: #EAF5FA;
+    --whitewash: #FBF8F1;
+    --plaster: #F3ECDD;
+    --terracotta: #C1622D;
+    --terracotta-light: #E2956B;
+    --olive: #6E7A4B;
+    --ink: #2B2620;
+    --ink-soft: #6B6355;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  body{
+    background: var(--whitewash);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .display{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  em{ font-style: italic; font-family: 'Fraunces', serif; font-weight: 500; }
+
+  .mono{
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.04em;
+  }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ───────── HERO ───────── */
+
+  .hero{
+    background: linear-gradient(180deg, var(--sky-pale) 0%, var(--sky) 100%);
+    padding: 64px 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-inner{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px 56px;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .eyebrow{
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    border: 1px solid var(--terracotta);
+    padding: 5px 12px;
+    margin-bottom: 22px;
+  }
+
+  .hero h1{
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    line-height: 0.98;
+    color: var(--sea-deep);
+  }
+  .hero h1 em{ color: var(--terracotta); }
+
+  .hero-sub{
+    margin-top: 20px;
+    max-width: 46ch;
+    font-size: 1.08rem;
+    color: var(--ink-soft);
+  }
+
+  .hero-meta{
+    display: flex;
+    gap: 32px;
+    margin-top: 34px;
+    flex-wrap: wrap;
+  }
+  .meta-item{ display: flex; flex-direction: column; gap: 3px; }
+  .meta-label{
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--sea);
+  }
+  .meta-value{ font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 600; color: var(--ink); }
+
+  .hero-art{ width: 100%; height: auto; }
+  .hero-art svg{ width: 100%; height: auto; display: block; }
+
+  /* scalloped roof-tile divider — signature element */
+  .scallop{
+    display: block;
+    width: 100%;
+    height: 26px;
+    line-height: 0;
+  }
+  .scallop.terracotta path{ fill: var(--terracotta); }
+  .scallop.sea path{ fill: var(--sea); }
+  .scallop.flip{ transform: rotate(180deg); }
+
+  /* ───────── INTRO ───────── */
+
+  .intro{
+    padding: 68px 0 40px;
+    background: var(--plaster);
+  }
+
+  .intro .wrap{ max-width: 760px; }
+
+  .lede{
+    font-size: 1.18rem;
+    color: var(--ink);
+    max-width: 62ch;
+  }
+
+  .pull-quote{
+    margin: 46px 0 8px;
+    padding-left: 28px;
+    border-left: 3px solid var(--terracotta);
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 1.35;
+    color: var(--sea-deep);
+  }
+
+  .pull-quote::before{ content: '"'; }
+  .pull-quote::after{ content: '"'; }
+
+  /* ───────── INGREDIENTS ───────── */
+
+  .ingredients-section{
+    background: var(--whitewash);
+    padding: 60px 0 20px;
+  }
+
+  .section-heading{
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 30px;
+  }
+  .section-heading h2{ font-size: 2rem; color: var(--sea-deep); }
+  .section-heading .count{
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--terracotta);
+    letter-spacing: 0.08em;
+  }
+
+  /* scaler — adapted from site pattern */
+  .scaler-bar{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: var(--sky-pale);
+    border: 1px solid var(--sky);
+    border-left: 4px solid var(--terracotta);
+    padding: 16px 24px;
+    margin-bottom: 34px;
+    flex-wrap: wrap;
+  }
+  .scaler-label{
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--terracotta);
+    font-weight: 700;
+    flex: 1;
+    min-width: 120px;
+  }
+  .scaler-controls{
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--sea);
+  }
+  .scaler-btn{
+    background: var(--terracotta);
+    color: #fff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .scaler-btn:hover{ background: var(--terracotta-light); }
+  .scaler-btn:disabled{ background: #b9b0a0; cursor: not-allowed; }
+  .scaler-count{
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    width: 52px;
+    text-align: center;
+    background: white;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid var(--sea);
+    border-right: 1px solid var(--sea);
+  }
+  .scaler-note{
+    font-style: italic;
+    font-family: 'Fraunces', serif;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+  }
+  .qty{ font-weight: 700; color: var(--terracotta); transition: color 0.3s; }
+  .qty.changed{ color: var(--olive); }
+
+  .ingredient-groups{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    margin-bottom: 20px;
+  }
+
+  .ing-group{
+    background: var(--plaster);
+    border-top: 3px solid var(--sea);
+    padding: 24px 26px;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .ing-group.revealed{ opacity: 1; transform: translateY(0); }
+  .ing-group.terra{ border-top-color: var(--terracotta); }
+
+  .ing-group h3{
+    font-size: 1.05rem;
+    color: var(--sea-deep);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .ing-group.terra h3{ color: var(--terracotta); }
+
+  .ingredient-list{ list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .ingredient-list li{ font-size: 0.96rem; }
+  .ingredient-list li.optional{ color: var(--ink-soft); font-style: italic; }
+
+  /* ───────── METHOD / TIMELINE ───────── */
+
+  .method-section{
+    background: var(--sea-deep);
+    color: var(--sky-pale);
+    padding: 70px 0 80px;
+  }
+  .method-section .section-heading h2{ color: var(--whitewash); }
+  .method-section .section-heading .count{ color: var(--terracotta-light); }
+
+  .timeline{
+    list-style: none;
+    position: relative;
+    padding-left: 54px;
+  }
+  .timeline::before{
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: rgba(255,255,255,0.18);
+  }
+  .timeline li{
+    position: relative;
+    margin-bottom: 34px;
+    opacity: 0;
+    transform: translateX(-12px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .timeline li.revealed{ opacity: 1; transform: translateX(0); }
+  .timeline li::before{
+    content: attr(data-step);
+    position: absolute;
+    left: -54px;
+    top: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--terracotta);
+    color: #fff;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .timeline h4{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.15rem;
+    margin-bottom: 6px;
+    color: var(--whitewash);
+  }
+  .timeline p{ color: var(--sky); font-size: 0.97rem; max-width: 60ch; }
+  .timeline .tag{
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--terracotta-light);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* ───────── NOTES ───────── */
+
+  .notes-section{
+    background: var(--plaster);
+    padding: 64px 0 80px;
+  }
+  .notes-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+    margin-top: 30px;
+  }
+  .note-card{
+    background: var(--whitewash);
+    border: 1px solid var(--sky);
+    padding: 22px 22px 24px;
+  }
+  .note-card .note-icon{
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sea);
+    margin-bottom: 10px;
+    display: block;
+  }
+  .note-card h4{
+    font-family: 'Fraunces', serif;
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+    color: var(--sea-deep);
+  }
+  .note-card p{ font-size: 0.92rem; color: var(--ink-soft); }
+
+  /* ───────── FOOTER ───────── */
+
+  footer{
+    background: var(--sea-deep);
+    color: var(--sky);
+    text-align: center;
+    padding: 30px 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+  }
+
+  @media (max-width: 760px){
+    .hero-inner{ grid-template-columns: 1fr; }
+    .hero-art{ max-width: 260px; margin: 0 auto; }
+    .ingredient-groups{ grid-template-columns: 1fr; }
+    .notes-grid{ grid-template-columns: 1fr; }
+    .timeline{ padding-left: 46px; }
+    .timeline li::before{ left: -46px; width: 32px; height: 32px; font-size: 0.75rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .ing-group, .timeline li{ transition: none; opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <span class="eyebrow">Coastal · Weeknight Mediterranean</span>
+      <h1>Greek Chicken<br><em>Bowls</em></h1>
+      <p class="hero-sub">Charred corn, roasted zucchini, and quick-pickled onions over lemon couscous with baba ganoush — finished with a bright oregano vinaigrette. Built like the bowls at the fast-casual Mediterranean spots we love, sized for our table.</p>
+      <div class="hero-meta">
+        <div class="meta-item"><span class="meta-label">Serves</span><span class="meta-value" id="hero-serves">3</span></div>
+        <div class="meta-item"><span class="meta-label">Active</span><span class="meta-value">40 min</span></div>
+        <div class="meta-item"><span class="meta-label">Heat</span><span class="meta-value">Mild</span></div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="160" cy="160" r="150" fill="#FFFFFF" opacity="0.4"/>
+        <circle cx="230" cy="90" r="34" fill="#E2956B"/>
+        <path d="M40 220 Q80 200 120 220 Q160 240 200 220 Q240 200 280 220 L280 320 L40 320 Z" fill="#2B6E8F" opacity="0.85"/>
+        <path d="M40 250 Q80 232 120 250 Q160 268 200 250 Q240 232 280 250 L280 320 L40 320 Z" fill="#16455C"/>
+        <ellipse cx="160" cy="200" rx="98" ry="26" fill="#FBF8F1"/>
+        <ellipse cx="160" cy="196" rx="86" ry="20" fill="#F3ECDD"/>
+        <circle cx="122" cy="192" r="12" fill="#C1622D"/>
+        <circle cx="150" cy="188" r="10" fill="#E2956B"/>
+        <circle cx="178" cy="193" r="11" fill="#6E7A4B"/>
+        <circle cx="200" cy="188" r="9" fill="#F3ECDD" stroke="#C1622D" stroke-width="2"/>
+        <circle cx="140" cy="200" r="7" fill="#FBF8F1" stroke="#6E7A4B" stroke-width="2"/>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<svg class="scallop terracotta" viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M0,0 C10,20 20,20 30,0 C40,20 50,20 60,0 C70,20 80,20 90,0 C100,20 110,20 120,0 C130,20 140,20 150,0 C160,20 170,20 180,0 C190,20 200,20 210,0 C220,20 230,20 240,0 C250,20 260,20 270,0 C280,20 290,20 300,0 L300,0 L0,0 Z"/></svg>
+
+<section class="intro">
+  <div class="wrap">
+    <p class="lede">This one's an homage to the build-your-own Mediterranean bowl spots — layered, colorful, a little indulgent, but built entirely from things you can pull off in a weeknight window. The vinaigrette and quick pickle do the heavy lifting; everything else is straightforward roasting and searing.</p>
+    <p class="pull-quote">The vinaigrette is what turns "chicken and rice" into a bowl worth building a Tuesday around.</p>
+  </div>
+</section>
+
+<svg class="scallop sea" viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M0,0 C10,20 20,20 30,0 C40,20 50,20 60,0 C70,20 80,20 90,0 C100,20 110,20 120,0 C130,20 140,20 150,0 C160,20 170,20 180,0 C190,20 200,20 210,0 C220,20 230,20 240,0 C250,20 260,20 270,0 C280,20 290,20 300,0 L300,0 L0,0 Z"/></svg>
+
+<section class="ingredients-section">
+  <div class="wrap">
+    <div class="section-heading">
+      <h2>Ingredients</h2>
+      <span class="count mono">6 groups</span>
+    </div>
+
+    <div class="scaler-bar">
+      <span class="scaler-label">Adjust Servings</span>
+      <div class="scaler-controls">
+        <button class="scaler-btn" id="btn-minus" aria-label="Fewer servings">−</button>
+        <span class="scaler-count" id="scaler-count">3</span>
+        <button class="scaler-btn" id="btn-plus" aria-label="More servings">+</button>
+      </div>
+      <span class="scaler-note" id="scaler-note">Base recipe</span>
+    </div>
+
+    <div class="ingredient-groups">
+      <div class="ing-group">
+        <h3>Chicken &amp; Marinade</h3>
+        <ul class="ingredient-list" id="group-marinade-list"></ul>
+      </div>
+      <div class="ing-group terra">
+        <h3>Roasted Vegetables</h3>
+        <ul class="ingredient-list" id="group-vegetables-list"></ul>
+      </div>
+      <div class="ing-group">
+        <h3>Quick Pickled Onions</h3>
+        <ul class="ingredient-list" id="group-pickled-list"></ul>
+      </div>
+      <div class="ing-group terra">
+        <h3>Lemon-Oregano Vinaigrette</h3>
+        <ul class="ingredient-list" id="group-vinaigrette-list"></ul>
+      </div>
+      <div class="ing-group">
+        <h3>Couscous Base</h3>
+        <ul class="ingredient-list" id="group-couscous-list"></ul>
+      </div>
+      <div class="ing-group terra">
+        <h3>To Finish</h3>
+        <ul class="ingredient-list" id="group-toppings-list"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<svg class="scallop terracotta" viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M0,0 C10,20 20,20 30,0 C40,20 50,20 60,0 C70,20 80,20 90,0 C100,20 110,20 120,0 C130,20 140,20 150,0 C160,20 170,20 180,0 C190,20 200,20 210,0 C220,20 230,20 240,0 C250,20 260,20 270,0 C280,20 290,20 300,0 L300,0 L0,0 Z"/></svg>
+
+<section class="method-section">
+  <div class="wrap">
+    <div class="section-heading">
+      <h2>Method</h2>
+      <span class="count mono">8 steps</span>
+    </div>
+    <ol class="timeline">
+      <li data-step="1">
+        <span class="tag">Do first — it needs to sit</span>
+        <h4>Quick-pickle the onions</h4>
+        <p>Combine the sliced red onion, red wine vinegar, warm water, sugar, and salt in a jar. Stir until the sugar dissolves and let sit at room temperature while you cook — at least 20 minutes, longer is better.</p>
+      </li>
+      <li data-step="2">
+        <span class="tag">15 min – overnight</span>
+        <h4>Marinate the chicken</h4>
+        <p>Whisk together the olive oil, lemon juice, garlic, oregano, salt, and pepper. Add the chicken and toss to coat. Marinate at least 15 minutes, or up to overnight in the fridge.</p>
+      </li>
+      <li data-step="3">
+        <span class="tag">Can do anytime before serving</span>
+        <h4>Whisk the vinaigrette</h4>
+        <p>Whisk together the olive oil, lemon juice, oregano, honey, and salt until emulsified. Set aside — it'll only get better as it sits.</p>
+      </li>
+      <li data-step="4">
+        <span class="tag">~20 min, oven</span>
+        <h4>Roast the zucchini</h4>
+        <p>Preheat oven to 425°F. Toss the zucchini with a drizzle of olive oil, salt, and pepper. Spread on a baking sheet and roast until tender and lightly browned, flipping halfway.</p>
+      </li>
+      <li data-step="5">
+        <span class="tag">5–7 min, stovetop</span>
+        <h4>Char the corn</h4>
+        <p>Heat a dry skillet or grill pan over medium-high heat. Add the corn kernels and cook, stirring occasionally, until charred in spots.</p>
+      </li>
+      <li data-step="6">
+        <span class="tag">10–12 min, stovetop</span>
+        <h4>Cook the chicken</h4>
+        <p>Heat a skillet over medium-high heat. Cook the marinated chicken until browned and cooked through (internal temp 165°F), about 5–6 minutes per side depending on thickness. Let rest 5 minutes, then slice.</p>
+      </li>
+      <li data-step="7">
+        <span class="tag">5 min, off heat</span>
+        <h4>Make the couscous</h4>
+        <p>Bring the broth to a boil. Stir in the dry couscous, cover, remove from heat, and let sit until the liquid is absorbed. Fluff with a fork.</p>
+      </li>
+      <li data-step="8">
+        <span class="tag">Bring it together</span>
+        <h4>Assemble the bowls</h4>
+        <p>Divide couscous among bowls. Top with sliced chicken, roasted zucchini, charred corn, a scoop of baba ganoush, and a handful of pickled onions. Drizzle generously with the vinaigrette and finish with feta and parsley.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<svg class="scallop sea" viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M0,0 C10,20 20,20 30,0 C40,20 50,20 60,0 C70,20 80,20 90,0 C100,20 110,20 120,0 C130,20 140,20 150,0 C160,20 170,20 180,0 C190,20 200,20 210,0 C220,20 230,20 240,0 C250,20 260,20 270,0 C280,20 290,20 300,0 L300,0 L0,0 Z"/></svg>
+
+<section class="notes-section">
+  <div class="wrap">
+    <div class="section-heading">
+      <h2>Notes from the Kitchen</h2>
+    </div>
+    <div class="notes-grid">
+      <div class="note-card">
+        <span class="note-icon mono">For the toddler</span>
+        <h4>Keep it simple</h4>
+        <p>Plate a portion of plain couscous, chicken, and zucchini before the vinaigrette and pickled onions go on — the base recipe has no real heat, so no other adjustment is needed.</p>
+      </div>
+      <div class="note-card">
+        <span class="note-icon mono">Swaps</span>
+        <h4>Flexible base</h4>
+        <p>Swap the couscous for rice or quinoa if you prefer, and grill the chicken outside instead of pan-searing if the weather's nice.</p>
+      </div>
+      <div class="note-card">
+        <span class="note-icon mono">Storage</span>
+        <h4>Meal-prep friendly</h4>
+        <p>Leftover components keep well separately in the fridge for 3–4 days, so this is a great meal-prep bowl — pickled onions and vinaigrette both improve overnight.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>THE SC SMITHS &nbsp;·&nbsp; NPSMITHMD.COM</footer>
+
+<script>
+  // ── SERVINGS SCALER ──
+  const BASE = 3;
+  let servings = 3;
+
+  const groupMarinade = [
+    { qty: 1.25, unit: 'lb',  label: 'boneless skinless chicken thighs <em>(or breasts)</em>' },
+    { qty: 2,    unit: 'tbsp', label: 'olive oil' },
+    { qty: 1,    unit: '',    label: 'lemon, juiced', count: true },
+    { qty: 3,    unit: '',    label: 'garlic cloves, minced', count: true },
+    { qty: 1,    unit: 'tsp', label: 'dried oregano' },
+    { qty: 0.75, unit: 'tsp', label: 'salt' },
+    { qty: 0.25, unit: 'tsp', label: 'black pepper' },
+  ];
+
+  const groupVegetables = [
+    { qty: 2,    unit: '',    label: 'medium zucchini, sliced into half-moons', count: true },
+    { qty: 1.5,  unit: 'cups', label: 'corn kernels <em>(fresh, frozen, or canned)</em>' },
+    { qty: null, unit: '',    label: 'Olive oil, salt &amp; pepper, for roasting' },
+  ];
+
+  const groupPickled = [
+    { qty: 1,    unit: '',    label: 'small red onion, thinly sliced', count: true },
+    { qty: 0.5,  unit: 'cup', label: 'red wine vinegar' },
+    { qty: 0.5,  unit: 'cup', label: 'warm water' },
+    { qty: 1,    unit: 'tbsp', label: 'sugar' },
+    { qty: 0.5,  unit: 'tsp', label: 'salt' },
+  ];
+
+  const groupVinaigrette = [
+    { qty: 0.25, unit: 'cup', label: 'olive oil' },
+    { qty: 2,    unit: 'tbsp', label: 'lemon juice <em>(about 1 lemon)</em>' },
+    { qty: 0.5,  unit: 'tsp', label: 'dried oregano' },
+    { qty: 0.5,  unit: 'tsp', label: 'honey' },
+    { qty: 0.25, unit: 'tsp', label: 'salt' },
+  ];
+
+  const groupCouscous = [
+    { qty: 1,    unit: 'cup', label: 'dry couscous' },
+    { qty: 1,    unit: 'cup', label: 'chicken or vegetable broth <em>(or water)</em>' },
+  ];
+
+  const groupToppings = [
+    { qty: 0.75,  unit: 'cup', label: 'baba ganoush <em>(homemade or store-bought)</em>' },
+    { qty: 0.333, unit: 'cup', label: 'feta cheese, crumbled' },
+    { qty: 2,     unit: 'tbsp', label: 'fresh parsley, chopped' },
+  ];
+
+  function formatQty(raw) {
+    if (raw === null) return null;
+    const n = Math.round(raw * 8) / 8;
+    const fracMap = [
+      [0.125,'⅛'],[0.25,'¼'],[0.333,'⅓'],[0.5,'½'],
+      [0.667,'⅔'],[0.75,'¾'],[0.875,'⅞']
+    ];
+    function nearFrac(val) {
+      let best = ''; let minD = 0.07;
+      for (const [v, s] of fracMap) {
+        if (Math.abs(val - v) < minD) { minD = Math.abs(val - v); best = s; }
+      }
+      return best;
+    }
+    if (n >= 1) {
+      const whole = Math.floor(n);
+      const frac = nearFrac(n - whole);
+      return (whole > 0 && frac) ? `${whole}${frac}` : whole > 0 ? String(whole) : frac || n.toFixed(1);
+    } else {
+      return nearFrac(n) || n.toFixed(2);
+    }
+  }
+
+  function renderList(listId, ingredients) {
+    const ul = document.getElementById(listId);
+    if (!ul) return;
+    ul.innerHTML = ingredients.map(ing => {
+      const scaled = ing.qty !== null ? ing.qty * (servings / BASE) : null;
+      const qtyStr = scaled !== null ? formatQty(scaled) : null;
+      const unitStr = ing.unit ? ' ' + ing.unit : '';
+      const qtyHtml = qtyStr ? `<span class="qty">${qtyStr}${unitStr}</span> ` : '';
+      const cls = ing.optional ? ' class="optional"' : '';
+      const prefix = ing.optional ? 'Optional: ' : '';
+      return `<li${cls}>${prefix}${qtyHtml}${ing.label}</li>`;
+    }).join('');
+  }
+
+  function updateAll() {
+    renderList('group-marinade-list', groupMarinade);
+    renderList('group-vegetables-list', groupVegetables);
+    renderList('group-pickled-list', groupPickled);
+    renderList('group-vinaigrette-list', groupVinaigrette);
+    renderList('group-couscous-list', groupCouscous);
+    renderList('group-toppings-list', groupToppings);
+
+    document.getElementById('scaler-count').textContent = servings;
+    const heroServes = document.getElementById('hero-serves');
+    if (heroServes) heroServes.textContent = servings;
+
+    const note = servings === BASE ? 'Base recipe'
+      : servings < BASE ? `Scaled down (÷${(BASE/servings).toFixed(1).replace('.0','')})`
+      : `Scaled up (×${(servings/BASE).toFixed(1).replace('.0','')})`;
+    document.getElementById('scaler-note').textContent = note;
+
+    document.getElementById('btn-minus').disabled = servings <= 1;
+    document.getElementById('btn-plus').disabled  = servings >= 20;
+
+    document.querySelectorAll('.qty').forEach(el => {
+      el.classList.add('changed');
+      setTimeout(() => el.classList.remove('changed'), 600);
+    });
+  }
+
+  document.getElementById('btn-minus').addEventListener('click', () => {
+    if (servings > 1)  { servings--; updateAll(); }
+  });
+  document.getElementById('btn-plus').addEventListener('click', () => {
+    if (servings < 20) { servings++; updateAll(); }
+  });
+
+  updateAll();
+
+  // ── SCROLL REVEAL ──
+  const revealTargets = document.querySelectorAll('.ing-group, .timeline li');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealTargets.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
